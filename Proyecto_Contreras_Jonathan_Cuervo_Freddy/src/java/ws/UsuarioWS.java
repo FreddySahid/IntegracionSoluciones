@@ -72,10 +72,10 @@ public class UsuarioWS {
                 conexionBD.commit();
                 if(resultado > 0){
                     respuestaWS.setError(false);
-                    respuestaWS.setMensaje("Información del médico registrada con éxito");
+                    respuestaWS.setMensaje("Información del usuario registrada con éxito");
                 }else{
                     respuestaWS.setError(true);
-                    respuestaWS.setMensaje("No se pudo registrar el médico, intentelo de nuevo más tarde");
+                    respuestaWS.setMensaje("No se pudo registrar el usuario, intentelo de nuevo más tarde");
                     
                 }
             }catch(Exception e){
@@ -90,6 +90,103 @@ public class UsuarioWS {
         }
         return respuestaWS;
     }
+    
+    @Path("modificar")
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    public Respuesta modificar(
+            @FormParam("idUsuario") Integer idUsuario,
+            @FormParam("nombre") String nombre,
+            @FormParam("apellidoPaterno") String apellidoPaterno,
+            @FormParam("apellidoMaterno") String apellidoMaterno,
+            @FormParam("password") String password){
+        
+        Usuario usuario = new Usuario();
+        usuario.setId(idUsuario);
+        usuario.setNombre(nombre);
+        usuario.setApellidoPaterno(apellidoPaterno);
+        usuario.setApellidoMaterno(apellidoMaterno);
+        usuario.setPassword(password);
+        
+        Respuesta respuestaWS = new Respuesta();
+        SqlSession conexionBD = new MyBatisUtil().getSession();
+        if(conexionBD != null){
+            try{
+                int resultado = conexionBD.update("usuarios.modificar", usuario);
+                conexionBD.commit();
+                if(resultado > 0){
+                    respuestaWS.setError(false);
+                    respuestaWS.setMensaje("Información del usuario modificada con éxito");
+                }else{
+                    respuestaWS.setError(true);
+                    respuestaWS.setMensaje("No se pudo actualizar el usuario, intentelo de nuevo más tarde");
+                    
+                }
+            }catch(Exception e){
+                respuestaWS.setError(true);
+                respuestaWS.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuestaWS.setError(true);
+            respuestaWS.setMensaje("Servicio no disponible, intentelo más tarde.");
+        }
+        return respuestaWS;
+    }
+    
+    @Path("eliminar")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public Respuesta eliminar(@FormParam("idUsuario") Integer idUsuario){
+        Respuesta respuestaWS = new Respuesta();
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if(conexionBD != null){
+            try{
+                int respuesta = conexionBD.update("usuarios.eliminar", idUsuario);
+                conexionBD.commit();
+                if(respuesta>0){
+                    respuestaWS.setError(false);
+                    respuestaWS.setMensaje("Registro del usuario eliminado");
+                }else{
+                    respuestaWS.setError(false);
+                    respuestaWS.setMensaje("No se pudó eliminar el registro solicitado");
+                }
+            }catch(Exception e){
+                respuestaWS.setError(true);
+                respuestaWS.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuestaWS.setError(true);
+            respuestaWS.setMensaje("No hay conexión");
+        }
+        return respuestaWS;
+    }
+    
+    @Path("buscarID/{idUsuario}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Usuario regresarUsuario(
+            @PathParam("idUsuario") Integer idUsuario){
+        
+        Usuario usuario= null;
+        
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if(conexionBD != null){
+            try {
+                usuario = conexionBD.selectOne("usuarios.getID", idUsuario);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }
+        return usuario;
+    }
+    
+    
     
     
 }

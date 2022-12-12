@@ -2,7 +2,7 @@
 package pojos;
 
 public class Usuario {
-    private Integer id;
+    private Integer idUsuario;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -13,7 +13,7 @@ public class Usuario {
     }
 
     public Usuario(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String password) {
-        this.id = id;
+        this.idUsuario = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -22,11 +22,11 @@ public class Usuario {
     }
 
     public Integer getId() {
-        return id;
+        return idUsuario;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idUsuario = id;
     }
 
     public String getNombre() {
