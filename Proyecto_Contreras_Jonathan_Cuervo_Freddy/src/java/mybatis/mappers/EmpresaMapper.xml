@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="empresas">
+    <select id="getAll" resultType="pojos.Empresa" >
+        SELECT idEmpresa, nombre, nombreComercial, nombreRepresentante, correoEmpresa, 
+        direccionCalle, direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, empresa.idEstado, 
+        estado, numSucursales FROM empresa INNER JOIN estado ON empresa.idEstado = estado.idEstado
+    </select>
+    <select id="getEmpresa" resultType="pojos.Empresa" parameterType="pojos.Empresa" >
+        SELECT idEmpresa, nombre, nombreComercial, nombreRepresentante, correoEmpresa,direccionCalle,
+        direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, empresa.idEstado, 
+        estado, numSucursales FROM empresa INNER JOIN estado ON empresa.idEstado = estado.idEstado 
+        WHERE empresa.nombreRepresentante = #{nombreRepresentante} OR empresa.rfc = #{rfc}
+    </select>
+    <insert id="registrar" parameterType="pojos.Empresa">
+        INSERT INTO empresa (nombre, nombreComercial, nombreRepresentante, correoEmpresa, 
+        direccionCalle, direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, idEstado, numSucursales)
+        VALUES (#{nombre}, #{nombreComercial}, #{nombreRepresentante}, #{correoEmpresa}, #{direccionCalle},
+        #{direccionNumero}, #{cp}, #{ciudad}, #{telefono}, #{sitioWeb}, #{rfc}, #{idEstado}, 0 )        
+    </insert>
+    <update id="actualizar" parameterType="pojos.Empresa">
+        UPDATE empresa SET nombre = #{nombre},
+        nombreComercial = #{nombreComercial},
+        nombreRepresentante = #{nombreRepresentante},
+        correoEmpresa = #{correoEmpresa},
+        direccionCalle = #{direccionCalle},
+        direccionNumero = #{direccionNumero},
+        cp = #{cp},
+        ciudad = #{ciudad},
+        telefono = #{telefono},
+        sitioWeb = #{sitioWeb},
+        idEstado = #{idEstado}
+        WHERE idEmpresa = #{idEmpresa};
+    </update>
+    <delete id="eliminar" parameterType="int">
+        DELETE FROM empresa WHERE idEmpresa = #{idEmpresa} AND numSucursales = 0;
+    </delete>
+    
+    
+</mapper>

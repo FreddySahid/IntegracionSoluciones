@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   UNIQUE KEY `categoria` (`categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.categoria: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.categoria: ~3 rows (aproximadamente)
 INSERT INTO `categoria` (`idCategoria`, `categoria`) VALUES
 	(1, 'Farmacias'),
 	(2, 'Restaurantes'),
@@ -35,7 +35,7 @@ INSERT INTO `categoria` (`idCategoria`, `categoria`) VALUES
 
 -- Volcando estructura para tabla cuponex.empresa
 CREATE TABLE IF NOT EXISTS `empresa` (
-  `idEmpresa` int NOT NULL,
+  `idEmpresa` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL DEFAULT '',
   `nombreComercial` varchar(50) NOT NULL DEFAULT '',
   `nombreRepresentante` varchar(50) NOT NULL DEFAULT '',
@@ -47,17 +47,20 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `telefono` varchar(50) NOT NULL DEFAULT '0',
   `sitioWeb` varchar(50) DEFAULT '0',
   `rfc` varchar(13) DEFAULT '0',
-  `estado` int DEFAULT NULL,
+  `idEstado` int DEFAULT NULL,
   `numSucursales` int DEFAULT NULL,
   PRIMARY KEY (`idEmpresa`),
   UNIQUE KEY `correoEmpresa` (`correoEmpresa`),
-  KEY `estadoEmpresa` (`estado`),
-  CONSTRAINT `estadoEmpresa` FOREIGN KEY (`estado`) REFERENCES `estado` (`idEstado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `rfc` (`rfc`),
+  KEY `estadoEmpresa` (`idEstado`) USING BTREE,
+  CONSTRAINT `estadoEmpresa` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.empresa: ~0 rows (aproximadamente)
-INSERT INTO `empresa` (`idEmpresa`, `nombre`, `nombreComercial`, `nombreRepresentante`, `correoEmpresa`, `direccionCalle`, `direccionNumero`, `cp`, `ciudad`, `telefono`, `sitioWeb`, `rfc`, `estado`, `numSucursales`) VALUES
-	(1, 'DaryQueen SA', 'DaryQueen', 'Warren Buffet', 'Dary@Queen', 'Miguel Avila Camacho', 21, 91150, 'Xalapa', '2284103051', 'DaryQueen.com', 'DC', 1, 2);
+-- Volcando datos para la tabla cuponex.empresa: ~3 rows (aproximadamente)
+INSERT INTO `empresa` (`idEmpresa`, `nombre`, `nombreComercial`, `nombreRepresentante`, `correoEmpresa`, `direccionCalle`, `direccionNumero`, `cp`, `ciudad`, `telefono`, `sitioWeb`, `rfc`, `idEstado`, `numSucursales`) VALUES
+	(1, 'DaryQueen SA', 'DaryQueen', 'Warren Buffet', 'Dary@Queen', 'Miguel Avila Camacho', 21, 91150, 'Xalapa', '2284103051', 'DaryQueen.com', 'DC', 1, 2),
+	(2, 'HomeDepotSA', 'The Home Depot', 'Señor Depot', 'Home@Depot', 'Animas', 22, 91155, 'Xalapa', '2299667253', 'theHomeDepot.com', 'THD000234FR2', 1, 0),
+	(5, 'NIKESA', 'Nike', 'Señor nike', 'Just@DoIt', 'Animas', 22, 91155, 'Xalapa', '2299667253', 'nike.com', 'THD00023jdhs', 1, 0);
 
 -- Volcando estructura para tabla cuponex.estado
 CREATE TABLE IF NOT EXISTS `estado` (
@@ -66,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `estado` (
   PRIMARY KEY (`idEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.estado: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.estado: ~2 rows (aproximadamente)
 INSERT INTO `estado` (`idEstado`, `estado`) VALUES
 	(1, 'activo'),
 	(2, 'inactivo');
@@ -114,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   CONSTRAINT `empresaSucursal` FOREIGN KEY (`idEmpresa`) REFERENCES `empresa` (`idEmpresa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.sucursal: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.sucursal: ~2 rows (aproximadamente)
 INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccionCalle`, `direccionNumero`, `cp`, `colonia`, `ciudad`, `telefono`, `latitud`, `longitud`, `nombreEncargado`, `idEmpresa`) VALUES
 	(1, 'DaryQueen1', 'siempreviva', 21, 91022, 'Hidalgo', 'Xalapa', '2284103066', 23, 23, 'Carlos Alberto Gomez Mota', 1),
 	(3, 'DaryQueen3', 'LAzaro Cardenas', 221, 98371, 'Casa Blanca', 'Xalapa', '2288992277', 34, 21, 'Carlos López Arguelles', 1);
@@ -138,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `tipopromocion` (
   PRIMARY KEY (`idTipoPromocion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.tipopromocion: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.tipopromocion: ~2 rows (aproximadamente)
 INSERT INTO `tipopromocion` (`idTipoPromocion`, `tipoPromocion`) VALUES
 	(1, 'Descuento'),
 	(2, 'Rebaja');
@@ -153,12 +156,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `password` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`idUsuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.usuario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.usuario: ~4 rows (aproximadamente)
 INSERT INTO `usuario` (`idUsuario`, `nombre`, `apellidoPaterno`, `apellidoMaterno`, `correo`, `password`) VALUES
 	(1, 'Freddy', 'Sahid', 'Cuervo', 'freddy@cuervo', 'qwerty'),
-	(2, 'Freddy', 'Sahid', 'Cuervo', 'freddy@sahid', 'qwerty');
+	(2, 'Freddy', 'Sahid', 'Cuervo', 'freddy@sahid', 'qwerty'),
+	(4, 'freddy', 'Cuervo', 'Sanchez', 'freddy@sanchez', 'qwerty'),
+	(5, 'Carlos', 'Sanchez', 'Lopez', 'Carlos@Lopez', 'qwerty');
 
 -- Volcando estructura para tabla cuponex.usuariomovil
 CREATE TABLE IF NOT EXISTS `usuariomovil` (
