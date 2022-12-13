@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/mybatis/mappers/EmpresaMapper.xml</file>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/mybatis/mappers/UsuarioMapper.xml</file>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/pojos/Empresa.java</file>
+            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/ws/SucursalWS.java</file>
+            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/mybatis/mappers/SucursalMapper.xml</file>
             <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/ws/EmpresaWS.java</file>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/ws/UsuarioWS.java</file>
+            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/Proyecto_Contreras_Jonathan_Cuervo_Freddy/src/java/pojos/Sucursal.java</file>
         </group>
     </open-files>
 </project-private>

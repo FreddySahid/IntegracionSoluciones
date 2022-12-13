@@ -173,13 +173,12 @@ public class EmpresaWS {
         return listaUsuarios;
     }
     
-    @Path("buscarByRfcRepresentante/{rfc},{nombreRepresentante}")
+    @Path("buscarByRfcRepresentante/{nombreRepresentante}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Empresa obtenerTodosDatos(@PathParam("rfc") String rfc, 
+    public Empresa obtenerTodosDatos( 
             @PathParam("nombreRepresentante") String nombreRepresentante){
         Empresa empresa = new Empresa();
-        empresa.setRfc(rfc);
         empresa.setNombreRepresentante(nombreRepresentante);
         SqlSession conexionBD = MyBatisUtil.getSession();
         if(conexionBD != null){

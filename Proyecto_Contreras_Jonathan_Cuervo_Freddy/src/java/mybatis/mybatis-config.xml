@@ -41,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <mappers>
         <mapper resource="mybatis/mappers/UsuarioMapper.xml"/>
         <mapper resource="mybatis/mappers/EmpresaMapper.xml"/>
+        <mapper resource="mybatis/mappers/SucursalMapper.xml"/>
     </mappers>
 
     

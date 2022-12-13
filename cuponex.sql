@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   UNIQUE KEY `categoria` (`categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.categoria: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.categoria: ~2 rows (aproximadamente)
 INSERT INTO `categoria` (`idCategoria`, `categoria`) VALUES
 	(1, 'Farmacias'),
 	(2, 'Restaurantes'),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 INSERT INTO `empresa` (`idEmpresa`, `nombre`, `nombreComercial`, `nombreRepresentante`, `correoEmpresa`, `direccionCalle`, `direccionNumero`, `cp`, `ciudad`, `telefono`, `sitioWeb`, `rfc`, `idEstado`, `numSucursales`) VALUES
 	(1, 'DaryQueen SA', 'DaryQueen', 'Warren Buffet', 'Dary@Queen', 'Miguel Avila Camacho', 21, 91150, 'Xalapa', '2284103051', 'DaryQueen.com', 'DC', 1, 2),
 	(2, 'HomeDepotSA', 'The Home Depot', 'Señor Depot', 'Home@Depot', 'Animas', 22, 91155, 'Xalapa', '2299667253', 'theHomeDepot.com', 'THD000234FR2', 1, 0),
-	(5, 'NIKESA', 'Nike', 'Señor nike', 'Just@DoIt', 'Animas', 22, 91155, 'Xalapa', '2299667253', 'nike.com', 'THD00023jdhs', 1, 0);
+	(5, 'NIKESA', 'Nike', 'Señor nike', 'Just@DoIt', 'Animas', 22, 91155, 'Xalapa', '2299667253', 'nike.com', 'THD00023jdhs', 1, 4);
 
 -- Volcando estructura para tabla cuponex.estado
 CREATE TABLE IF NOT EXISTS `estado` (
@@ -76,31 +76,31 @@ INSERT INTO `estado` (`idEstado`, `estado`) VALUES
 
 -- Volcando estructura para tabla cuponex.promocion
 CREATE TABLE IF NOT EXISTS `promocion` (
-  `idPromocion` int NOT NULL,
+  `idPromocion` int NOT NULL AUTO_INCREMENT,
   `nombrePromocion` varchar(50) NOT NULL DEFAULT '',
   `foto` blob,
   `descripcion` varchar(50) NOT NULL DEFAULT '',
   `fechaInicioPromocion` date NOT NULL,
   `fechaFinPromocion` date NOT NULL,
-  `tipoPromocion` int NOT NULL DEFAULT '0',
+  `idTipoPromocion` int NOT NULL DEFAULT '0',
   `porcentajeDescuento` double DEFAULT '0',
   `costo` double NOT NULL DEFAULT '0',
   `categoria` int NOT NULL DEFAULT '0',
-  `estado` int NOT NULL DEFAULT '0',
+  `idEstado` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`idPromocion`),
-  KEY `estadoPromocion` (`estado`),
-  KEY `tipoPromocion` (`tipoPromocion`),
   KEY `categoriaPromocion` (`categoria`),
+  KEY `estadoPromocion` (`idEstado`) USING BTREE,
+  KEY `tipoPromocion` (`idTipoPromocion`) USING BTREE,
   CONSTRAINT `categoriaPromocion` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idCategoria`),
-  CONSTRAINT `estadoPromocion` FOREIGN KEY (`estado`) REFERENCES `estado` (`idEstado`),
-  CONSTRAINT `tipoPromocion` FOREIGN KEY (`tipoPromocion`) REFERENCES `tipopromocion` (`idTipoPromocion`)
+  CONSTRAINT `estadoPromo` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`),
+  CONSTRAINT `tipoPromo` FOREIGN KEY (`idPromocion`) REFERENCES `tipopromocion` (`idTipoPromocion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla cuponex.promocion: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla cuponex.sucursal
 CREATE TABLE IF NOT EXISTS `sucursal` (
-  `idSucursal` int NOT NULL,
+  `idSucursal` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL DEFAULT '',
   `direccionCalle` varchar(50) NOT NULL DEFAULT '',
   `direccionNumero` int NOT NULL DEFAULT '0',
@@ -115,20 +115,24 @@ CREATE TABLE IF NOT EXISTS `sucursal` (
   PRIMARY KEY (`idSucursal`),
   KEY `empresaSucursal` (`idEmpresa`),
   CONSTRAINT `empresaSucursal` FOREIGN KEY (`idEmpresa`) REFERENCES `empresa` (`idEmpresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla cuponex.sucursal: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla cuponex.sucursal: ~6 rows (aproximadamente)
 INSERT INTO `sucursal` (`idSucursal`, `nombre`, `direccionCalle`, `direccionNumero`, `cp`, `colonia`, `ciudad`, `telefono`, `latitud`, `longitud`, `nombreEncargado`, `idEmpresa`) VALUES
 	(1, 'DaryQueen1', 'siempreviva', 21, 91022, 'Hidalgo', 'Xalapa', '2284103066', 23, 23, 'Carlos Alberto Gomez Mota', 1),
-	(3, 'DaryQueen3', 'LAzaro Cardenas', 221, 98371, 'Casa Blanca', 'Xalapa', '2288992277', 34, 21, 'Carlos López Arguelles', 1);
+	(3, 'DaryQueen3', 'LAzaro Cardenas', 221, 98371, 'Casa Blanca', 'Xalapa', '2288992277', 34, 21, 'Carlos López Arguelles', 1),
+	(4, 'NikeNuevo', 'Americas', 1, 12567, 'Manantiales', 'Xalapa', '228374653', 11.2, 234.21, 'Lebrom James', 5),
+	(5, 'NikeXalapa', 'Ruiz Cortinez', 4, 99, 'Casa Blanca', 'Xalapa', '9116098472', 45.6, 847.3, 'Michael Jordan', 5),
+	(6, 'NikeCDMX', 'Ruiz Cortinez', 4, 99, 'Casa Blanca', 'Xalapa', '9116098472', 45.6, 847.3, 'Kevin Duran', 5),
+	(9, 'Nikenew', '12 de diciembre', 11, 11234, 'Rafael', 'Puebla', '22846281', 12, 13, 'CarlosNike jr.', 5);
 
 -- Volcando estructura para tabla cuponex.sucursalpromocion
 CREATE TABLE IF NOT EXISTS `sucursalpromocion` (
   `idPromocion` int NOT NULL,
   `idSucursal` int NOT NULL,
-  KEY `promocionsuc` (`idPromocion`),
   KEY `sucursalpromo` (`idSucursal`),
-  CONSTRAINT `promocionsuc` FOREIGN KEY (`idPromocion`) REFERENCES `promocion` (`idPromocion`),
+  KEY `promosucursal` (`idPromocion`),
+  CONSTRAINT `promosucursal` FOREIGN KEY (`idPromocion`) REFERENCES `promocion` (`idPromocion`),
   CONSTRAINT `sucursalpromo` FOREIGN KEY (`idSucursal`) REFERENCES `sucursal` (`idSucursal`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -136,10 +140,10 @@ CREATE TABLE IF NOT EXISTS `sucursalpromocion` (
 
 -- Volcando estructura para tabla cuponex.tipopromocion
 CREATE TABLE IF NOT EXISTS `tipopromocion` (
-  `idTipoPromocion` int NOT NULL,
+  `idTipoPromocion` int NOT NULL AUTO_INCREMENT,
   `tipoPromocion` varchar(50) NOT NULL,
   PRIMARY KEY (`idTipoPromocion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Volcando datos para la tabla cuponex.tipopromocion: ~2 rows (aproximadamente)
 INSERT INTO `tipopromocion` (`idTipoPromocion`, `tipoPromocion`) VALUES

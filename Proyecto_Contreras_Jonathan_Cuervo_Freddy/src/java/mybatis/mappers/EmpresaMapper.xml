@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT idEmpresa, nombre, nombreComercial, nombreRepresentante, correoEmpresa,direccionCalle,
         direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, empresa.idEstado, 
         estado, numSucursales FROM empresa INNER JOIN estado ON empresa.idEstado = estado.idEstado 
-        WHERE empresa.nombreRepresentante = #{nombreRepresentante} OR empresa.rfc = #{rfc}
+        WHERE empresa.nombreRepresentante = #{nombreRepresentante} OR empresa.rfc = #{nombreRepresentante}
     </select>
     <insert id="registrar" parameterType="pojos.Empresa">
         INSERT INTO empresa (nombre, nombreComercial, nombreRepresentante, correoEmpresa, 

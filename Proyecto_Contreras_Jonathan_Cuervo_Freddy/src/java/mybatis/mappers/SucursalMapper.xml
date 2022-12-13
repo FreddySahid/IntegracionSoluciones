@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sucursales">
+    <insert id="registrar" parameterType="pojos.Sucursal">
+        INSERT INTO sucursal (nombre, direccionCalle, direccionNumero, cp, colonia, ciudad, telefono, latitud, 
+        longitud, nombreEncargado, idEmpresa) VALUES (#{nombre}, #{direccionCalle}, #{direccionNumero}, #{cp},
+        #{colonia}, #{ciudad}, #{telefono}, #{latitud}, #{longitud}, #{nombreEncargado}, #{idEmpresa})       
+    </insert>
+    <update id= "actualizar" parameterType="pojos.Sucursal" >
+        UPDATE sucursal SET 
+        nombre = #{nombre},
+        direccionCalle = #{direccionCalle},
+        direccionNumero = #{direccionNumero}, 
+        cp = #{cp}, 
+        colonia = #{colonia}, 
+        ciudad = #{ciudad}, 
+        telefono = #{telefono}, 
+        latitud = #{latitud}, 
+        longitud = #{longitud }, 
+        nombreEncargado = #{nombreEncargado}, 
+        idEmpresa = #{idEmpresa}
+        WHERE idSucursal = #{idSucursal}
+    </update>
+    <delete id="eliminar" parameterType="int">
+        DELETE FROM sucursal WHERE idSucursal = #{idSucursal}
+    </delete>
+    <select id="getSucursal" resultType="pojos.Sucursal" parameterType="pojos.Sucursal" >
+        SELECT * FROM sucursal WHERE nombre = #{nombre} OR direccionCalle = #{nombre}
+    </select>
+</mapper>
