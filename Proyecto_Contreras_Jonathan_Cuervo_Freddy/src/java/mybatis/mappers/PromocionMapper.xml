@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="promociones">
+    <select id="all" resultType="pojos.Promocion">
+        SELECT nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
+        DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
+        tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
+        FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado WHERE v_promociones.idEstado = 1;
+    </select>
+    
+     <select id="buscarPromocion" resultType="pojos.Promocion" parameterType="pojos.Promocion">
+        SELECT nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
+        DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
+        tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
+        FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado
+        WHERE v_promociones.nombrePromocion = #{nombrePromocion} OR v_promociones.fechaInicioPromocion = #{nombrePromocion}
+        OR v_promociones.fechaFinPromocion = #{nombrePromocion};
+    </select>
+    <insert id="registrar" parameterType="pojos.Promocion">
+        INSERT INTO promocion(nombrePromocion, descripcion, fechaInicioPromocion, fechaFinPromocion,
+        idTipoPromocion, porcentajeDescuento, costo, idCategoria, idEstado) VALUES (#{nombrePromocion}, 
+        #{descripcion},#{fechaInicioPromocion},#{fechaFinPromocion},#{idTipoPromocion},#{porcentajeDescuento},
+        #{costo}, #{idCategoria},#{idEstado})
+    </insert>
+    
+    <update id="actualizar" parameterType="pojos.Promocion">
+        UPDATE promocion SET 
+        nombrePromocion = #{nombrePromocion}, 
+        descripcion = #{descripcion}, 
+        fechaInicioPromocion = #{fechaInicioPromocion}, 
+        fechaFinPromocion = #{fechaFinPromocion},
+        idTipoPromocion = #{idTipoPromocion}, 
+        porcentajeDescuento = #{porcentajeDescuento}, 
+        costo = #{costo}, 
+        idCategoria = #{idCategoria}, 
+        idEstado = #{idEstado}
+        WHERE idPromocion = #{idPromocion}
+    </update>
+    <delete id="eliminar" parameterType="int"> 
+        DELETE FROM promocion WHERE idPromocion = #{idPromocion};
+    </delete>   
+    <update id="desactivar" parameterType="int">
+        UPDATE promocion SET idEstado = 2 WHERE idPromocion = #{idPromocion}
+    </update>
+    
+    <update id="subirFoto" parameterType="map">
+        UPDATE promocion SET foto = #{foto} WHERE idPromocion = #{idPromocion}
+    </update>
+    
+    <select id="obtenerFoto" resultType="pojos.Promocion" parameterType="int">
+        SELECT idPromocion, nombrePromocion, to_base64(foto) AS 'foto', descripcion, fechaInicioPromocion, fechaFinPromocion, 
+        idTipoPromocion, porcentajeDescuento, costo, idCategoria, idEstado FROM promocion 
+        WHERE idPromocion = #{idPromocion};        
+    </select>
+</mapper>
