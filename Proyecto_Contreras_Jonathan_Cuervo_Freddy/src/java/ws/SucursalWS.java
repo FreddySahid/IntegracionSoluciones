@@ -5,6 +5,7 @@
  */
 package ws;
 
+import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -179,11 +180,11 @@ public class SucursalWS {
         return respuestaWS;
     }
     
-    @Path("buscarnombredireccion/{nombre}")
-    @GET
+    @Path("buscarnombredireccion")
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Sucursal obtenerTodosDatos( 
-            @PathParam("nombre") String nombre){
+            @FormParam("nombre") String nombre){
         Sucursal sucursal = new Sucursal();
         sucursal.setNombre(nombre);
         
@@ -198,6 +199,45 @@ public class SucursalWS {
             }
         }
         return sucursal;
+    }
+    
+    @Path("SucursalEmpresa/{idEmpresa}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Sucursal> buscarTodos(
+            @PathParam("idEmpresa") Integer idEmpresa){
+        List<Sucursal> listaEmpresa = null;
+        SqlSession conexionBD= MyBatisUtil.getSession();
+        if( conexionBD != null){
+            try{
+                listaEmpresa = conexionBD.selectList("sucursales.getSucursalEmpresa", idEmpresa);
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+            
+        }
+        return listaEmpresa;
+    }
+    
+    @Path("all")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Sucursal> buscarTodos(){
+        List<Sucursal> listaEmpresa = null;
+        SqlSession conexionBD= MyBatisUtil.getSession();
+        if( conexionBD != null){
+            try{
+                listaEmpresa = conexionBD.selectList("sucursales.getAll");
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+            
+        }
+        return listaEmpresa;
     }
     
 }

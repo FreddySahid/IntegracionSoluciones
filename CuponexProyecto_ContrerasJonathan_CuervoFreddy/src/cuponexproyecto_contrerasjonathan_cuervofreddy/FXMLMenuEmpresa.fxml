@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLMenuPrincipalController">
+   <children>
+      <Button mnemonicParsing="false" onAction="#irRegistrarEmpresa" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Registrar" textFill="WHITE" />
+      <Button mnemonicParsing="false" onAction="#irModificarEliminarEmpresa" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Modificar y Eliminar" textFill="WHITE" />
+      <Button mnemonicParsing="false" onAction="#buscarEmpresa" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
+   </children>
+</HBox>

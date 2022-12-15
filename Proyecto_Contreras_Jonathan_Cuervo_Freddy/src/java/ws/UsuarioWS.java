@@ -148,12 +148,15 @@ public class UsuarioWS {
     @Path("eliminar")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Respuesta eliminar(@FormParam("idUsuario") Integer idUsuario){
+    public Respuesta eliminar(@FormParam("correo") String correo){
+        Usuario usuario = new Usuario();
+        usuario.setCorreo(correo);
         Respuesta respuestaWS = new Respuesta();
         SqlSession conexionBD = MyBatisUtil.getSession();
+        
         if(conexionBD != null){
             try{
-                int respuesta = conexionBD.update("usuarios.eliminar", idUsuario);
+                int respuesta = conexionBD.update("usuarios.eliminar", usuario);
                 conexionBD.commit();
                 if(respuesta>0){
                     respuestaWS.setError(false);

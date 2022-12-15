@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="600.0" style="-fx-background-color: #14242B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLRegistrarEmpresaController">
+   <children>
+      <Button layoutX="455.0" layoutY="397.0" mnemonicParsing="false" onAction="#agregarEmpresa" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Agregar" textFill="WHITE" />
+      <TextField fx:id="tfDireccion" layoutX="100.0" layoutY="297.0" prefHeight="25.0" prefWidth="197.0" promptText="contraseña" />
+      <Label layoutX="100.0" layoutY="280.0" text="Dirección" textFill="WHITE" />
+      <TextField fx:id="tfCorreo" layoutX="100.0" layoutY="239.0" prefHeight="25.0" prefWidth="197.0" promptText="Correo" />
+      <Label layoutX="104.0" layoutY="222.0" text="Correo" textFill="WHITE" />
+      <TextField fx:id="tfNombreRepresentante" layoutX="100.0" layoutY="185.0" prefHeight="25.0" prefWidth="197.0" promptText="Nombre del representante" />
+      <Label layoutX="100.0" layoutY="162.0" text="Nombre del representante" textFill="WHITE" />
+      <TextField fx:id="tfNombreComercial" layoutX="100.0" layoutY="119.0" prefHeight="25.0" prefWidth="197.0" promptText="Nombre Comercial" />
+      <Label layoutX="100.0" layoutY="96.0" text="Nombre comercial" textFill="WHITE" />
+      <Label layoutX="100.0" layoutY="34.0" text="Nombre" textFill="WHITE" />
+      <TextField fx:id="tfNombre" layoutX="100.0" layoutY="57.0" prefHeight="25.0" prefWidth="197.0" promptText="Nombre" />
+      <Label layoutX="100.0" layoutY="331.0" text="Número de dirección" textFill="WHITE" />
+      <TextField fx:id="tfDireccionNumero" layoutX="100.0" layoutY="348.0" prefHeight="25.0" prefWidth="197.0" promptText="contraseña" />
+      <TextField fx:id="tfCp" layoutX="338.0" layoutY="57.0" prefHeight="25.0" prefWidth="197.0" promptText="Código Postal" />
+      <TextField fx:id="tfCiudad" layoutX="338.0" layoutY="119.0" prefHeight="25.0" prefWidth="197.0" promptText="Ciudad" />
+      <TextField fx:id="tfTelefono" layoutX="338.0" layoutY="185.0" prefHeight="25.0" prefWidth="197.0" promptText="Teléfono" />
+      <TextField fx:id="tfSitioWeb" layoutX="338.0" layoutY="239.0" prefHeight="25.0" prefWidth="197.0" promptText="SitioWeb" />
+      <Label layoutX="338.0" layoutY="34.0" text="Código Postal" textFill="WHITE" />
+      <Label layoutX="338.0" layoutY="96.0" text="Ciudad" textFill="WHITE" />
+      <Label layoutX="338.0" layoutY="162.0" text="Teléfono" textFill="WHITE" />
+      <Label layoutX="339.0" layoutY="222.0" text="Sitio web" textFill="WHITE" />
+      <TextField fx:id="tfRFC" layoutX="338.0" layoutY="297.0" prefHeight="25.0" prefWidth="197.0" promptText="RFC" />
+      <Label layoutX="337.0" layoutY="272.0" text="RFC" textFill="WHITE" />
+      <ComboBox fx:id="cvEstado" layoutX="337.0" layoutY="348.0" prefWidth="150.0" promptText="Estado" />
+   </children>
+</AnchorPane>

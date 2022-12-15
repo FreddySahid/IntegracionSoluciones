@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="1250.0" style="-fx-background-color: #14242B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLModificarEliminarEmpresaController">
+   <children>
+      <ComboBox fx:id="cvEstado" layoutX="1106.0" layoutY="335.0" prefHeight="25.0" prefWidth="118.0" promptText="Estado" />
+      <Label layoutX="1106.0" layoutY="259.0" text="RFC" textFill="WHITE" />
+      <TextField fx:id="tfRFC" layoutX="1107.0" layoutY="284.0" prefHeight="25.0" prefWidth="118.0" promptText="RFC" />
+      <Label layoutX="1108.0" layoutY="209.0" text="Sitio web" textFill="WHITE" />
+      <Label layoutX="1107.0" layoutY="149.0" text="Teléfono" textFill="WHITE" />
+      <Label layoutX="1107.0" layoutY="83.0" text="Ciudad" textFill="WHITE" />
+      <Label layoutX="1107.0" layoutY="21.0" text="Código Postal" textFill="WHITE" />
+      <TextField fx:id="tfSitioWeb" layoutX="1107.0" layoutY="226.0" prefHeight="25.0" prefWidth="118.0" promptText="SitioWeb" />
+      <TextField fx:id="tfTelefono" layoutX="1107.0" layoutY="172.0" prefHeight="25.0" prefWidth="118.0" promptText="Teléfono" />
+      <TextField fx:id="tfCiudad" layoutX="1107.0" layoutY="106.0" prefHeight="25.0" prefWidth="118.0" promptText="Ciudad" />
+      <TextField fx:id="tfCp" layoutX="1107.0" layoutY="44.0" prefHeight="25.0" prefWidth="118.0" promptText="Código Postal" />
+      <TextField fx:id="tfDireccionNumero" layoutX="947.0" layoutY="335.0" prefHeight="25.0" prefWidth="118.0" promptText="contraseña" />
+      <Label layoutX="947.0" layoutY="318.0" text="Número de dirección" textFill="WHITE" />
+      <TextField fx:id="tfNombre" layoutX="947.0" layoutY="44.0" prefHeight="25.0" prefWidth="112.0" promptText="Nombre" />
+      <Label layoutX="947.0" layoutY="21.0" text="Nombre" textFill="WHITE" />
+      <Label layoutX="947.0" layoutY="83.0" text="Nombre comercial" textFill="WHITE" />
+      <TextField fx:id="tfNombreComercial" layoutX="947.0" layoutY="106.0" prefHeight="25.0" prefWidth="112.0" promptText="Nombre Comercial" />
+      <Label layoutX="947.0" layoutY="149.0" text="Nombre del representante" textFill="WHITE" />
+      <TextField fx:id="tfNombreRepresentante" layoutX="947.0" layoutY="172.0" prefHeight="25.0" prefWidth="112.0" promptText="Nombre del representante" />
+      <Label layoutX="951.0" layoutY="209.0" text="Correo" textFill="WHITE" />
+      <TextField fx:id="tfCorreo" layoutX="947.0" layoutY="226.0" prefHeight="25.0" prefWidth="112.0" promptText="Correo" />
+      <Label layoutX="947.0" layoutY="267.0" text="Dirección" textFill="WHITE" />
+      <TextField fx:id="tfDireccion" layoutX="947.0" layoutY="284.0" prefHeight="25.0" prefWidth="112.0" promptText="contraseña" />
+      <Button layoutX="1104.0" layoutY="363.0" mnemonicParsing="false" onAction="#fnEliminar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Eliminar" textFill="WHITE" />
+      <Button layoutX="1029.0" layoutY="363.0" mnemonicParsing="false" onAction="#fnModificar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Modificar" textFill="WHITE" />
+      <Button layoutX="945.0" layoutY="363.0" mnemonicParsing="false" onAction="#fnSeleccionar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Seleccionar" textFill="WHITE" />
+      <TableView fx:id="tbEmpresa" layoutX="14.0" layoutY="54.0" onMouseClicked="#fnSeleccion" prefHeight="326.0" prefWidth="916.0">
+        <columns>
+          <TableColumn fx:id="clNombre" prefWidth="61.0" text="Nombre" />
+          <TableColumn fx:id="clNombreComercial" prefWidth="115.0" text="Nombre Comercial" />
+            <TableColumn fx:id="clNombreRepresentante" prefWidth="140.0" text="Nombre Representante" />
+            <TableColumn fx:id="clCorreo" prefWidth="72.0" text="Correo" />
+            <TableColumn fx:id="clDireccion" prefWidth="65.0" text="Dirección" />
+            <TableColumn fx:id="clNumeroDireccion" prefWidth="61.0" text="Número" />
+            <TableColumn fx:id="clCP" prefWidth="42.0" text="CP" />
+            <TableColumn fx:id="clCiudad" prefWidth="77.0" text="Ciudad" />
+            <TableColumn fx:id="clTelefono" prefWidth="77.0" text="Telefono" />
+            <TableColumn fx:id="clSitioWeb" prefWidth="67.0" text="Sitio web" />
+            <TableColumn fx:id="clRFC" prefWidth="86.0" text="RFC" />
+            <TableColumn fx:id="idEmpresa" minWidth="0.0" prefWidth="1.0" text="idEmpresa" visible="false" />
+            <TableColumn fx:id="clSucursales" prefWidth="53.0" text="N. S" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

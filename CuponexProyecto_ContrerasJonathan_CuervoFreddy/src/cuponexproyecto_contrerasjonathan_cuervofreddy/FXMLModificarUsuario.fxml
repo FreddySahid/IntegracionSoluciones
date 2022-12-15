@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -17,12 +18,10 @@
       <Label layoutX="520.0" layoutY="34.0" text="Nombre" textFill="WHITE" />
       <TextField fx:id="tfNombre" layoutX="520.0" layoutY="57.0" prefHeight="25.0" prefWidth="195.0" promptText="Nombre" />
       <PasswordField fx:id="pfPassword" layoutX="520.0" layoutY="301.0" prefHeight="25.0" prefWidth="195.0" promptText="Contraseña" />
-      <TextField fx:id="tfBuscar" layoutX="27.0" layoutY="57.0" prefHeight="25.0" prefWidth="465.0" />
-      <Label layoutX="27.0" layoutY="34.0" text="Buscar" textFill="WHITE" />
       <Button layoutX="597.0" layoutY="359.0" mnemonicParsing="false" onAction="#eliminarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Eliminar" textFill="WHITE" />
       <Button layoutX="455.0" layoutY="359.0" mnemonicParsing="false" onAction="#buscarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
-      <Button layoutX="388.0" layoutY="359.0" mnemonicParsing="false" onAction="#guardarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Guardar" textFill="WHITE" />
-      <TableView fx:id="tvUsuario" layoutX="27.0" layoutY="110.0" prefHeight="200.0" prefWidth="465.0">
+      <Button layoutX="354.0" layoutY="359.0" mnemonicParsing="false" onAction="#guardarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Seleccionar" textFill="WHITE" />
+      <TableView fx:id="tvUsuario" layoutX="27.0" layoutY="110.0" onMouseClicked="#seleccionar" prefHeight="200.0" prefWidth="465.0">
         <columns>
           <TableColumn fx:id="clNombre" prefWidth="75.0" text="Nombre" />
           <TableColumn fx:id="clApellidoP" prefWidth="111.0" text="Apellidpo Paterno" />
@@ -33,6 +32,11 @@
       </TableView>
       <Label layoutX="521.0" layoutY="228.0" text="Correo" textFill="WHITE" />
       <TextField fx:id="tfCorreo" layoutX="520.0" layoutY="251.0" prefHeight="25.0" prefWidth="195.0" promptText="Correo" />
+      <Label layoutX="27.0" layoutY="49.0" text="Modificación y eliminación de usuarios." textFill="#fffdfd">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
    </children>
     
 </AnchorPane>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="1200.0" style="-fx-background-color: #14242B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLModificarEliminarSucursalController">
+   <children>
+      <TableView fx:id="cbSucursal" layoutX="26.0" layoutY="76.0" prefHeight="200.0" prefWidth="731.0">
+        <columns>
+          <TableColumn fx:id="clIdSucursal" minWidth="0.0" prefWidth="0.0" text="idSucursal" visible="false" />
+          <TableColumn fx:id="clNombre" prefWidth="93.0" text="Nombre" />
+            <TableColumn fx:id="clDireccion" prefWidth="101.0" text="Dirección" />
+            <TableColumn fx:id="clNumero" prefWidth="62.0" text="Número" />
+            <TableColumn fx:id="clCP" prefWidth="27.0" text="CP" />
+            <TableColumn fx:id="clColonia" prefWidth="58.0" text="Colonia" />
+            <TableColumn fx:id="clCiudad" prefWidth="51.0" text="Ciudad" />
+            <TableColumn fx:id="clTelefono" prefWidth="60.0" text="Telefono" />
+            <TableColumn fx:id="clLatitud" prefWidth="51.0" text="Latitud" />
+            <TableColumn fx:id="clLongitud" prefWidth="75.0" text="Longitud" />
+            <TableColumn fx:id="clEncargado" prefWidth="75.0" text="Encargado" />
+            <TableColumn fx:id="clEmpresa" prefWidth="75.0" text="Empresa" />
+        </columns>
+      </TableView>
+      <Button layoutX="1125.0" layoutY="356.0" mnemonicParsing="false" onAction="#fnModificar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Modificar" textFill="WHITE" />
+      <ComboBox fx:id="cvEmpresa" layoutX="628.0" layoutY="41.0" prefHeight="25.0" prefWidth="129.0" promptText="Empresa" />
+      <TextField fx:id="tfCiudad" layoutX="1052.0" layoutY="290.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="tfTelefono" layoutX="1052.0" layoutY="41.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="tfLatitud" layoutX="1048.0" layoutY="109.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="tfLongitud" layoutX="1048.0" layoutY="173.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="tfEncargado" layoutX="1052.0" layoutY="233.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="tfColonia" layoutX="812.0" layoutY="290.0" prefHeight="25.0" prefWidth="154.0" />
+      <TextField fx:id="tfCP" layoutX="812.0" layoutY="233.0" prefHeight="25.0" prefWidth="154.0" />
+      <TextField fx:id="tfNumero" layoutX="812.0" layoutY="173.0" prefHeight="25.0" prefWidth="154.0" />
+      <TextField fx:id="tfDireccionCalle" layoutX="812.0" layoutY="109.0" prefHeight="25.0" prefWidth="154.0" />
+      <Label layoutX="812.0" layoutY="19.0" text="Nombre" textFill="WHITE" />
+      <Label layoutX="809.0" layoutY="209.0" text="Código postal" textFill="WHITE" />
+      <Label layoutX="812.0" layoutY="146.0" text="Número" textFill="WHITE" />
+      <Label layoutX="1048.0" layoutY="209.0" text="Encargado" textFill="WHITE" />
+      <Label layoutX="1048.0" layoutY="84.0" text="Latitud" textFill="WHITE" />
+      <Label layoutX="1048.0" layoutY="146.0" text="Longitud" textFill="WHITE" />
+      <Label layoutX="814.0" layoutY="268.0" text="Colonia" textFill="WHITE" />
+      <Label layoutX="1053.0" layoutY="268.0" text="Ciudad" textFill="WHITE" />
+      <Label layoutX="1053.0" layoutY="10.0" text="Teléfono" textFill="WHITE" />
+      <Label layoutX="809.0" layoutY="84.0" text="Dirección" textFill="WHITE" />
+      <TextField fx:id="tfNombre" layoutX="812.0" layoutY="41.0" prefHeight="25.0" prefWidth="154.0" />
+      <Button layoutX="1051.0" layoutY="356.0" mnemonicParsing="false" onAction="#fnEliminar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Eliminar" textFill="WHITE" />
+      <Button layoutX="959.0" layoutY="356.0" mnemonicParsing="false" onAction="#fnSeleccionar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Seleccionar" textFill="WHITE" />
+      <Button layoutX="539.0" layoutY="40.0" mnemonicParsing="false" onAction="#fnBuscar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
+   </children>
+</AnchorPane>

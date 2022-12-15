@@ -9,6 +9,7 @@ import Util.Constantes;
 import Util.Utilidades;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.List;
@@ -24,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import modelo.ConexionServiciosWeb;
 import pojos.Respuesta;
 import pojos.Usuario;
@@ -67,6 +69,7 @@ public class FXMLModificarUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        tfCorreo.setDisable(true);
         configurarTabla();
         cargarUsuario();
     }  
@@ -97,10 +100,11 @@ public class FXMLModificarUsuarioController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error", "Error al cargar", Alert.AlertType.ERROR);
         }    
     }
+    
         
     @FXML
     private void ModificarUsuario(ActionEvent event) {
-        
+                
         String nombre = tfNombre.getText();
         String apellidoPaterno = tfApellidoPaterno.getText();
         String apellidoMaterno = tfApellidoMaterno.getText();
@@ -146,11 +150,48 @@ public class FXMLModificarUsuarioController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error de conexión",  e.getMessage(), Alert.AlertType.ERROR);
             
         }
-        
+        configurarTabla();
+        cargarUsuario();
     }
 
     @FXML
     private void eliminarUsuario(ActionEvent event) {
+        String correo = tfCorreo.getText();
+        eliminar(correo);
+
+        
+    }
+    
+    public void eliminar(String correo){
+                try{
+            String url = Constantes.URL_BASE+"usuarios/eliminar";
+            String parametros = "correo="+correo;
+            String resultado = ConexionServiciosWeb.consumirServicioDELETE(url, parametros);
+            Gson gson = new Gson();
+            Respuesta respuesta = gson.fromJson(resultado, Respuesta.class);
+            
+            if(!respuesta.getError()){
+                Utilidades.mostrarAlertaSimple("Usuario Modificado", "Usuario Modificado "+
+                        " al sistema", Alert.AlertType.INFORMATION);                
+            }else{
+                Utilidades.mostrarAlertaSimple("Usuario Modifiacdo", "Error en el correo", Alert.AlertType.ERROR);
+            }
+            
+        }catch(Exception e){
+            Utilidades.mostrarAlertaSimple("Error de conexión",  e.getMessage(), Alert.AlertType.ERROR);
+            
+        }
+        configurarTabla();
+        cargarUsuario();
+    }
+    
+    public void inicializarInformacionVentana(int idUsuario, String nombre, String aPaterno, String aMaterno, String correo, String password){    
+        tfCorreo.setDisable(true);
+        tfNombre.setText(nombre);
+        tfApellidoPaterno.setText(aPaterno);
+        tfApellidoMaterno.setText(aMaterno);
+        tfCorreo.setText(correo);
+        pfPassword.setText(password);
     }
 
     @FXML
@@ -159,6 +200,31 @@ public class FXMLModificarUsuarioController implements Initializable {
 
     @FXML
     private void guardarUsuario(ActionEvent event) {
+  
+        int filaSeleccionada = tvUsuario.getSelectionModel().getSelectedIndex();
+        if(filaSeleccionada >= 0){
+                String nombre = listaUsuarios.get(filaSeleccionada).getNombre();
+                String apellidoPaterno = listaUsuarios.get(filaSeleccionada).getApellidoPaterno();
+                String apellidoMaterno = listaUsuarios.get(filaSeleccionada).getApellidoMaterno();
+                String correo = listaUsuarios.get(filaSeleccionada).getCorreo();
+                String password = listaUsuarios.get(filaSeleccionada).getPassword();            
+
+                tfNombre.setText(nombre);
+                tfApellidoPaterno.setText(apellidoPaterno);
+                tfApellidoMaterno.setText(apellidoMaterno);
+                tfCorreo.setText(correo);
+                pfPassword.setText(password);
+        }else{
+            Utilidades.mostrarAlertaSimple("Selecciona un registro", "Debes seleccionar un administrador para su modificación"
+                    , Alert.AlertType.WARNING);
+        }
+        
+
+    }
+
+    @FXML
+    private void seleccionar(MouseEvent event) {
+        
     }
     
 }

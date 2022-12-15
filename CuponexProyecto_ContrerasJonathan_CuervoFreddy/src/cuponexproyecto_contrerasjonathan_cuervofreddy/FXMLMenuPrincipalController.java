@@ -66,11 +66,13 @@ public class FXMLMenuPrincipalController implements Initializable {
 
     @FXML
     private void menuEmpresa(MouseEvent event) {
+        loadPage("FXMLMenuEmpresa");
 
     }
 
     @FXML
     private void menuSucursales(MouseEvent event) {
+        loadPage("FXMLMenuSucursal");
     }
 
     @FXML
@@ -121,6 +123,93 @@ public class FXMLMenuPrincipalController implements Initializable {
         }
         
     }
-
+    
+    @FXML
+    public void irRegistrarEmpresa(ActionEvent event){
+        try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }        
+    }
+    
+    @FXML
+    public void irModificarEliminarEmpresa(ActionEvent event){
+                try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLModificarEliminarEmpresa.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }   
+        
+    }
+    
+    @FXML
+    public void buscarEmpresa(ActionEvent event){
+                 try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLBuscarEmpresa.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }         
+    }
+    
+    @FXML
+    public void irBuscarSucursal(ActionEvent event){
+                try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLBuscarSucursal.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }
+        
+    }
+    
+    @FXML
+    public void irEliminarModificarSucursal(ActionEvent event){
+        try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLModificarEliminarSucursal.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }
+        
+    }
+    
+    @FXML
+    public void irRegistrarCucursal(ActionEvent event){
+                         try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLRegistrarSucursal.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }
+        
+    }
 
 }

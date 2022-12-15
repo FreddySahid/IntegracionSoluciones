@@ -10,11 +10,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         direccionCalle, direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, empresa.idEstado, 
         estado, numSucursales FROM empresa INNER JOIN estado ON empresa.idEstado = estado.idEstado
     </select>
+    <select id="getAllEstado" resultType="pojos.Estado" >
+        SELECT * FROM estado
+    </select>
     <select id="getEmpresa" resultType="pojos.Empresa" parameterType="pojos.Empresa" >
         SELECT idEmpresa, nombre, nombreComercial, nombreRepresentante, correoEmpresa,direccionCalle,
         direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, empresa.idEstado, 
         estado, numSucursales FROM empresa INNER JOIN estado ON empresa.idEstado = estado.idEstado 
-        WHERE empresa.nombreRepresentante = #{nombreRepresentante} OR empresa.rfc = #{nombreRepresentante}
+        WHERE empresa.nombreRepresentante = #{nombreRepresentante} OR empresa.rfc = #{nombreRepresentante} OR
+        empresa.nombre = #{nombreRepresentante} OR empresa.nombreComercial = #{nombreRepresentante}
     </select>
     <insert id="registrar" parameterType="pojos.Empresa">
         INSERT INTO empresa (nombre, nombreComercial, nombreRepresentante, correoEmpresa, 
@@ -39,6 +43,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="eliminar" parameterType="int">
         DELETE FROM empresa WHERE idEmpresa = #{idEmpresa} AND numSucursales = 0;
     </delete>
+    
+    <select id="empresaNombre" parameterType="pojos.Empresa" resultType="pojos.Empresa">
+        SELECT idEmpresa FROM empresa WHERE nombre = #{nombre}
+    </select>
     
     
 </mapper>

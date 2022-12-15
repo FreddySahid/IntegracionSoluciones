@@ -22,9 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         PASSWORD= #{password}
         WHERE correo = #{correo}
     </update>
-    <delete id="eliminar" parameterType="int">
+    <delete id="eliminar" parameterType="pojos.Usuario">
         DELETE FROM usuario 
-        WHERE idUsuario = #{idUsuario}
+        WHERE correo = #{correo}
     </delete>
     <select id="usuarioLogin" resultType="pojos.Usuario" parameterType="pojos.Usuario" >
         SELECT * FROM usuario WHERE correo = #{correo} AND PASSWORD = #{password}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #14242B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLBuscarSucursalController">
+   <children>
+      <Label layoutX="106.0" layoutY="35.0" text="Puedes buscar una sucursal por nombre o direccion" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNombreDireccion" layoutX="107.0" layoutY="94.0" prefHeight="25.0" prefWidth="323.0" promptText="Ingresa el nombre o dirección" />
+      <Button layoutX="442.0" layoutY="94.0" mnemonicParsing="false" onAction="#fnBuscar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
+      <Label fx:id="lbSucursal" layoutX="107.0" layoutY="150.0" prefHeight="225.0" prefWidth="323.0" textFill="WHITE" />
+   </children>
+</AnchorPane>

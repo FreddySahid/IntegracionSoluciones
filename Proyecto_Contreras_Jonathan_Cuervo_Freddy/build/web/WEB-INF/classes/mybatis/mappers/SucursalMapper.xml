@@ -28,6 +28,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DELETE FROM sucursal WHERE idSucursal = #{idSucursal}
     </delete>
     <select id="getSucursal" resultType="pojos.Sucursal" parameterType="pojos.Sucursal" >
-        SELECT * FROM sucursal WHERE nombre = #{nombre} OR direccionCalle = #{nombre}
+        SELECT idSucursal, sucursal.nombre, sucursal.direccionCalle, sucursal.direccionNumero,sucursal.cp, 
+        colonia, sucursal.ciudad, sucursal.telefono,
+        latitud,longitud,sucursal.nombreEncargado,
+       empresa.nombre AS empresa ,sucursal.idEmpresa FROM sucursal INNER JOIN empresa ON sucursal.idEmpresa = empresa.idEmpresa
+        WHERE sucursal.nombre = #{nombre} OR sucursal.direccionCalle = #{nombre}
+    </select>
+    <select id="getSucursalEmpresa" resultType="pojos.Sucursal" parameterType="int" >
+         SELECT idSucursal, sucursal.nombre, sucursal.direccionCalle, sucursal.direccionNumero,sucursal.cp, 
+        colonia, sucursal.ciudad, sucursal.telefono,
+        latitud,longitud,sucursal.nombreEncargado,
+       empresa.nombre AS empresa ,sucursal.idEmpresa FROM sucursal INNER JOIN empresa ON sucursal.idEmpresa = empresa.idEmpresa
+        WHERE empresa.idEmpresa= #{idEmpresa} 
+    </select>
+    
+    <select id="getAll" resultType="pojos.Sucursal">
+        SELECT idSucursal, sucursal.nombre, sucursal.direccionCalle, sucursal.direccionNumero,sucursal.cp, 
+        colonia, sucursal.ciudad, sucursal.telefono,
+        latitud,longitud,sucursal.nombreEncargado,
+       empresa.nombre AS empresa ,sucursal.idEmpresa FROM sucursal INNER JOIN empresa ON sucursal.idEmpresa = empresa.idEmpresa
     </select>
 </mapper>

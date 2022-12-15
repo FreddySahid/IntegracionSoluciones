@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLMenuUsuario.fxml</file>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLAgregarUsuariosController.java</file>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLPrincipalController.java</file>
             <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLDocumentController.java</file>
-            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLModificarUsuarioController.java</file>
+            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLBuscarEmpresa.fxml</file>
+            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/pojos/Empresa.java</file>
+            <file>file:/C:/Users/fredd/Documents/Integración%20de%20soluciones/ProyectoIntegracionSoluciones/CuponexProyecto_ContrerasJonathan_CuervoFreddy/src/cuponexproyecto_contrerasjonathan_cuervofreddy/FXMLBuscarEmpresaController.java</file>
         </group>
     </open-files>
 </project-private>

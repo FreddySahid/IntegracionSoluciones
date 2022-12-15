@@ -20,7 +20,10 @@ import javax.ws.rs.core.UriInfo;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojos.Empresa;
+import pojos.Estado;
 import pojos.Respuesta;
+import pojos.RespuestaLogin;
+import pojos.Usuario;
 
 /**
  *
@@ -158,11 +161,11 @@ public class EmpresaWS {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Empresa> buscarTodos(){
-        List<Empresa> listaUsuarios = null;
+        List<Empresa> listaEmpresa = null;
         SqlSession conexionBD= MyBatisUtil.getSession();
         if( conexionBD != null){
             try{
-                listaUsuarios = conexionBD.selectList("empresas.getAll");
+                listaEmpresa = conexionBD.selectList("empresas.getAll");
             }catch(Exception e){
                 e.printStackTrace();
             }finally{
@@ -170,7 +173,26 @@ public class EmpresaWS {
             }
             
         }
-        return listaUsuarios;
+        return listaEmpresa;
+    }
+    
+    @Path("allEstado")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Estado> buscarTodosEstado(){
+        List<Estado> listaEstados = null;
+        SqlSession conexionBD= MyBatisUtil.getSession();
+        if( conexionBD != null){
+            try{
+                listaEstados = conexionBD.selectList("empresas.getAllEstado");
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+            
+        }
+        return listaEstados;
     }
     
     @Path("buscarByRfcRepresentante/{nombreRepresentante}")
@@ -221,6 +243,46 @@ public class EmpresaWS {
             respuestaWS.setMensaje("No hay conexión");
         }
         return respuestaWS;
+    }
+    
+    @Path("empresaNombre")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public RespuestaLogin iniciarSesionUsuario(
+            @FormParam("nombre") String nombre)
+            {
+
+        Empresa empresa = new Empresa();
+        empresa.setNombre(nombre);
+        
+        RespuestaLogin respuesta = new RespuestaLogin();
+        SqlSession conexionBD = new MyBatisUtil().getSession();
+        
+        if(conexionBD != null){
+            try{
+                empresa = conexionBD.selectOne("empresas.empresaNombre", empresa);
+                conexionBD.commit();
+                //if(resultado > 0){
+                    respuesta.setError(false);
+                    //respuesta.setMensaje("Bien venido " + paciente.getNombre());
+                    respuesta.setIdUsuario(empresa.getIdEmpresa());
+                /*}else{
+                    respuesta.setError(true);
+                    respuesta.setMensaje("No se pudo encontrar el paciente, intentelo de nuevo más tarde");
+                    
+                }*/
+            }catch(Exception e){
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setError(true);
+            respuesta.setMensaje("Servicio no disponible, intentelo más tarde.");
+        }
+        
+        return respuesta;
     }
     
 }

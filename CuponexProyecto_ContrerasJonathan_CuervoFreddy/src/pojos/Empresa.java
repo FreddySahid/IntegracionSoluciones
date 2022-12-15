@@ -169,6 +169,13 @@ public class Empresa {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Empresa: " + nombre + ", nombre comercial =" + nombreComercial + "\nRepresentante =" + nombreRepresentante + ", correo =" + correoEmpresa + ", \nDireccion =" + direccionCalle + ", " + direccionNumero + ", cp " + cp + ", " + ciudad + ", \nTel.=" + telefono + ", \nSitioWeb =" + sitioWeb + ", \nRFC =" + rfc + ", \nEstado =" + estado + ", \nN. S.=" + numSucursales;
+    }
+    
+    
     
     
     
