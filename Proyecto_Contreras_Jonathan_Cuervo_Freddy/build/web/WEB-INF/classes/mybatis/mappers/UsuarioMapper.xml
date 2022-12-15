@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="usuarios">
+    <select id="getAll" resultType="pojos.Usuario" >
+        SELECT * FROM usuario
+    </select>
+    <select id="getID" resultType="pojos.Usuario" parameterType="int">
+        SELECT * FROM usuario WHERE idUsuario = #{idUsuario}
+    </select>
+    <insert id="registrar" parameterType="pojos.Usuario" >
+        INSERT INTO usuario (nombre, apellidoPaterno, apellidoMaterno, correo, password) 
+        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{correo}, #{password})
+    </insert>
+    <update id="modificar" parameterType="pojos.Usuario">
+        UPDATE usuario SET 
+        nombre = #{nombre},
+        apellidoPaterno = #{apellidoPaterno},
+        apellidoMaterno = #{apellidoMaterno},
+        PASSWORD= #{password}
+        WHERE correo = #{correo}
+    </update>
+    <delete id="eliminar" parameterType="int">
+        DELETE FROM usuario 
+        WHERE idUsuario = #{idUsuario}
+    </delete>
+    <select id="usuarioLogin" resultType="pojos.Usuario" parameterType="pojos.Usuario" >
+        SELECT * FROM usuario WHERE correo = #{correo} AND PASSWORD = #{password}
+    </select>
+    
+</mapper>

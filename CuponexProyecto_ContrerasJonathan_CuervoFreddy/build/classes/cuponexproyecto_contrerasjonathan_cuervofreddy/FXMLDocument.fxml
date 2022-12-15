@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="601.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLDocumentController">
+   <children>
+      <Button id="btnIniciarSesion" layoutX="195.0" layoutY="300.0" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Iniciar sesión" textFill="WHITE" />
+      <Label layoutX="190.0" layoutY="225.0" prefHeight="20.0" prefWidth="74.0" text="Contraseña" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField id="tfCorreo" fx:id="tfCorreo" layoutX="190.0" layoutY="179.0" prefHeight="25.0" prefWidth="245.0" promptText="Correo electrónico" />
+      <Label layoutX="190.0" layoutY="148.0" prefHeight="20.0" prefWidth="48.0" text="Correo" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="label" layoutX="187.0" layoutY="81.0" minHeight="16" minWidth="69" text="Inicio de sesión" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="pfPassword" layoutX="192.0" layoutY="254.0" prefHeight="25.0" prefWidth="236.0" promptText="*************" />
+   </children>
+</AnchorPane>

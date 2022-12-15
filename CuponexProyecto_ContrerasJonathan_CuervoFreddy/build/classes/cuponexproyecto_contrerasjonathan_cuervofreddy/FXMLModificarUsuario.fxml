@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="785.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLModificarUsuarioController">
+     <children>
+      <Button layoutX="520.0" layoutY="359.0" mnemonicParsing="false" onAction="#ModificarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Modificar" textFill="WHITE" />
+      <Label layoutX="521.0" layoutY="276.0" text="Contraseña" textFill="WHITE" />
+      <TextField fx:id="tfApellidoMaterno" layoutX="520.0" layoutY="185.0" prefHeight="25.0" prefWidth="195.0" promptText="Apellido materno" />
+      <Label layoutX="521.0" layoutY="162.0" text="Apellido materno" textFill="WHITE" />
+      <TextField fx:id="tfApellidoPaterno" layoutX="520.0" layoutY="119.0" prefHeight="25.0" prefWidth="195.0" promptText="Apellido paterno" />
+      <Label layoutX="520.0" layoutY="96.0" text="Apellido Paterno" textFill="WHITE" />
+      <Label layoutX="520.0" layoutY="34.0" text="Nombre" textFill="WHITE" />
+      <TextField fx:id="tfNombre" layoutX="520.0" layoutY="57.0" prefHeight="25.0" prefWidth="195.0" promptText="Nombre" />
+      <PasswordField fx:id="pfPassword" layoutX="520.0" layoutY="301.0" prefHeight="25.0" prefWidth="195.0" promptText="Contraseña" />
+      <TextField fx:id="tfBuscar" layoutX="27.0" layoutY="57.0" prefHeight="25.0" prefWidth="465.0" />
+      <Label layoutX="27.0" layoutY="34.0" text="Buscar" textFill="WHITE" />
+      <Button layoutX="597.0" layoutY="359.0" mnemonicParsing="false" onAction="#eliminarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Eliminar" textFill="WHITE" />
+      <Button layoutX="455.0" layoutY="359.0" mnemonicParsing="false" onAction="#buscarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar" textFill="WHITE" />
+      <Button layoutX="388.0" layoutY="359.0" mnemonicParsing="false" onAction="#guardarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Guardar" textFill="WHITE" />
+      <TableView fx:id="tvUsuario" layoutX="27.0" layoutY="110.0" prefHeight="200.0" prefWidth="465.0">
+        <columns>
+          <TableColumn fx:id="clNombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="clApellidoP" prefWidth="111.0" text="Apellidpo Paterno" />
+            <TableColumn fx:id="clApellidoM" prefWidth="114.0" text="Apellido Materno" />
+            <TableColumn fx:id="clCorreo" prefWidth="97.0" text="Correo" />
+            <TableColumn fx:id="clPassword" prefWidth="67.0" text="Password" />
+        </columns>
+      </TableView>
+      <Label layoutX="521.0" layoutY="228.0" text="Correo" textFill="WHITE" />
+      <TextField fx:id="tfCorreo" layoutX="520.0" layoutY="251.0" prefHeight="25.0" prefWidth="195.0" promptText="Correo" />
+   </children>
+    
+</AnchorPane>

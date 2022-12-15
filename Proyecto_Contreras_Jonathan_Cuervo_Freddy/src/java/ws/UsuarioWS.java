@@ -105,14 +105,14 @@ public class UsuarioWS {
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     public Respuesta modificar(
-            @FormParam("idUsuario") Integer idUsuario,
+            @FormParam("correo") String correo,
             @FormParam("nombre") String nombre,
             @FormParam("apellidoPaterno") String apellidoPaterno,
             @FormParam("apellidoMaterno") String apellidoMaterno,
             @FormParam("password") String password){
         
         Usuario usuario = new Usuario();
-        usuario.setId(idUsuario);
+        usuario.setCorreo(correo);
         usuario.setNombre(nombre);
         usuario.setApellidoPaterno(apellidoPaterno);
         usuario.setApellidoMaterno(apellidoMaterno);

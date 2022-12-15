@@ -25,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.ConexionServiciosWeb;
+import pojos.Respuesta;
 import pojos.Usuario;
 
 /**
@@ -58,7 +59,7 @@ public class FXMLModificarUsuarioController implements Initializable {
     private TableView<Usuario> tvUsuario;
     private ObservableList<Usuario> listaUsuarios; 
     @FXML
-    private TableColumn clIdUsuario;
+    private TextField tfCorreo;
 
     /**
      * Initializes the controller class.
@@ -71,20 +72,16 @@ public class FXMLModificarUsuarioController implements Initializable {
     }  
     
     private void configurarTabla(){
-        listaUsuarios = FXCollections.observableArrayList();  
-        
-        
+        listaUsuarios = FXCollections.observableArrayList();         
         clNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
         clApellidoP.setCellValueFactory(new PropertyValueFactory("apellidoPaterno"));
         clApellidoM.setCellValueFactory(new PropertyValueFactory("apellidoMaterno"));
         clCorreo.setCellValueFactory(new PropertyValueFactory("correo"));
         clPassword.setCellValueFactory(new PropertyValueFactory("password"));
-        clIdUsuario.setCellValueFactory(new PropertyValueFactory("idUsuario"));
-        
         
     }
     
-        private void cargarUsuario(){
+    private void cargarUsuario(){
         String urlWS = Constantes.URL_BASE+ "usuarios/all";
         try{
             String jsonRespuesta = ConexionServiciosWeb.consumirServicioGET(urlWS);
@@ -103,6 +100,53 @@ public class FXMLModificarUsuarioController implements Initializable {
         
     @FXML
     private void ModificarUsuario(ActionEvent event) {
+        
+        String nombre = tfNombre.getText();
+        String apellidoPaterno = tfApellidoPaterno.getText();
+        String apellidoMaterno = tfApellidoMaterno.getText();
+        String correo = tfCorreo.getText();
+        String password= pfPassword.getText();
+        
+        if (!nombre.isEmpty() && !apellidoPaterno.isEmpty() && !apellidoMaterno.isEmpty()
+                &&!correo.isEmpty()  && !password.isEmpty()){
+            //verificarInicioSesion(noPersonal, password);
+            //todo
+            //recuperaDatosTabla();
+            actualizaUsuario(nombre, apellidoPaterno,apellidoMaterno,correo, password);
+        }else{ 
+            Utilidades.mostrarAlertaSimple("Campos requeridos", 
+                    "Es necesario ingresar todos los campos", 
+                    Alert.AlertType.WARNING);
+        }
+    }
+    
+    public void actualizaUsuario(String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
+            String password){
+                try{
+            String url = Constantes.URL_BASE+"usuarios/modificar";
+            String parametros =
+                    "correo="+correo+
+                    "&nombre="+nombre+
+                    "&apellidoPaterno="+apellidoPaterno+
+                    "&apellidoMaterno="+apellidoMaterno+
+                    
+                    "&password="+password;
+            String resultado = ConexionServiciosWeb.consumirServicioPUT(url, parametros);
+            Gson gson = new Gson();
+            Respuesta respuesta = gson.fromJson(resultado, Respuesta.class);
+            
+            if(!respuesta.getError()){
+                Utilidades.mostrarAlertaSimple("Usuario Modificado", "Usuario Modificado "+
+                        " al sistema", Alert.AlertType.INFORMATION);                
+            }else{
+                Utilidades.mostrarAlertaSimple("Usuario Modifiacdo", "Error en el correo", Alert.AlertType.ERROR);
+            }
+            
+        }catch(Exception e){
+            Utilidades.mostrarAlertaSimple("Error de conexión",  e.getMessage(), Alert.AlertType.ERROR);
+            
+        }
+        
     }
 
     @FXML

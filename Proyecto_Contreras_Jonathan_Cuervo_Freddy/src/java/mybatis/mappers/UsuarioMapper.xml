@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         apellidoPaterno = #{apellidoPaterno},
         apellidoMaterno = #{apellidoMaterno},
         PASSWORD= #{password}
-        WHERE idUsuario = #{idUsuario}
+        WHERE correo = #{correo}
     </update>
     <delete id="eliminar" parameterType="int">
         DELETE FROM usuario 
