@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLMenuPrincipalController">
+   <left>
+      <VBox fx:id="vb" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0D1824;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnUsuario" mnemonicParsing="false" onMouseClicked="#menuUsuario" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Usuarios" textFill="WHITE" />
+            <Button fx:id="btnEmpresa" mnemonicParsing="false" onMouseClicked="#menuEmpresa" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Empresas" textFill="WHITE" />
+            <Button fx:id="btnSucursales" mnemonicParsing="false" onMouseClicked="#menuSucursales" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sucursales" textFill="WHITE" />
+            <Button fx:id="btnPromociones" mnemonicParsing="false" onContextMenuRequested="#menuPromociones" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Promociones" textFill="WHITE" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane fx:id="ap" maxWidth="1.7976931348623157E308" style="-fx-background-color: #14242B;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

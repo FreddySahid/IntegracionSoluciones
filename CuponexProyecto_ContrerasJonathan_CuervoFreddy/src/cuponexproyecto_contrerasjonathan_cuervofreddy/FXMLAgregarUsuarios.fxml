@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #14242B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLAgregarUsuariosController">
+   <children>
+      <TextField fx:id="tfNombre" layoutX="90.0" layoutY="47.0" prefHeight="25.0" prefWidth="414.0" promptText="Nombre" />
+      <Label layoutX="90.0" layoutY="24.0" text="Nombre" textFill="WHITE" />
+      <Label layoutX="90.0" layoutY="86.0" text="Apellido Paterno" textFill="WHITE" />
+      <TextField fx:id="tfApellidoPaterno" layoutX="90.0" layoutY="109.0" prefHeight="25.0" prefWidth="414.0" promptText="Apellido paterno" />
+      <Label layoutX="90.0" layoutY="152.0" text="Apellido materno" textFill="WHITE" />
+      <TextField fx:id="tfApellidoMaterno" layoutX="90.0" layoutY="175.0" prefHeight="25.0" prefWidth="414.0" promptText="Apellido materno" />
+      <Label layoutX="90.0" layoutY="219.0" text="Correo" textFill="WHITE" />
+      <TextField fx:id="tfCorreo" layoutX="90.0" layoutY="242.0" prefHeight="25.0" prefWidth="414.0" promptText="Correo" />
+      <Label layoutX="90.0" layoutY="283.0" text="Contraseña" textFill="WHITE" />
+      <TextField fx:id="tfPassword" layoutX="90.0" layoutY="306.0" prefHeight="25.0" prefWidth="414.0" promptText="contraseña" />
+      <Button layoutX="445.0" layoutY="361.0" mnemonicParsing="false" onAction="#agregarUsuario" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Agregar" textFill="WHITE" />
+   </children>
+</AnchorPane>

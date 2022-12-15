@@ -26,5 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DELETE FROM usuario 
         WHERE idUsuario = #{idUsuario}
     </delete>
+    <select id="usuarioLogin" resultType="pojos.Usuario" parameterType="pojos.Usuario" >
+        SELECT * FROM usuario WHERE correo = #{correo} AND PASSWORD = #{password}
+    </select>
     
 </mapper>
