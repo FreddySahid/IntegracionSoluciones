@@ -65,6 +65,31 @@ public class ConexionServiciosWeb {
         return respuesta.toString();
         
     }
+    public static String peticionServicioPOSTImagen(String url,byte[] parametros) throws IOException{
+        
+        String resultado = "";
+        URL urlAcceso = new URL(url);
+        HttpURLConnection conexionHTTP = (HttpURLConnection) urlAcceso.openConnection();
+        conexionHTTP.setRequestMethod("POST");
+        conexionHTTP.setRequestProperty("Content-Type", "multipart/form-data");
+        conexionHTTP.setDoOutput(true);
+        
+        OutputStream outputSalida = conexionHTTP.getOutputStream() ;
+        outputSalida.write(parametros);
+        outputSalida.flush();
+        outputSalida.close();
+
+        int codigoRespuesta = conexionHTTP.getResponseCode();
+        System.out.println("El código de respuesta es: "+ codigoRespuesta);
+        
+        if (codigoRespuesta == HttpURLConnection.HTTP_OK) {
+            resultado = convertirStreamDatos(conexionHTTP.getInputStream());
+        }else{
+            resultado = "Error en la petición POST con código: "+codigoRespuesta;
+        }
+        
+        return resultado;
+    }  
     
     public static String consumirServicioPUT(String url, String parametros) throws Exception{
         String resultado = "";

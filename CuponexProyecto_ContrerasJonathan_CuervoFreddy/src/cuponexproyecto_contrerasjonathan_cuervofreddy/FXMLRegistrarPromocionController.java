@@ -9,6 +9,11 @@ import Util.Constantes;
 import Util.Utilidades;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,12 +25,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.ConexionServiciosWeb;
@@ -73,6 +81,12 @@ public class FXMLRegistrarPromocionController implements Initializable {
     Integer idPromocion;
     @FXML
     private ComboBox<SucursalSecundaria> cbSucursal;
+    
+    String imgB;
+    private byte [] byteImage = null;
+    private String imageType = "";
+    @FXML
+    private Button btnSeleccionarFoto;
     /**
      * Initializes the controller class.
      */
@@ -263,6 +277,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
             obtenerIdEstado();
             obtenerIdSucursal();
             guardarPromocion(nombre, descripcion, porcentajeDescuento, costo, fechaInicioPromocion, fechaFinPromocion);
+            subirFotoBD(this.byteImage);
             
             System.out.println(fechaFinPromocion);    
         }else{
@@ -310,6 +325,7 @@ public class FXMLRegistrarPromocionController implements Initializable {
             if(respuesta.getIdPromocion() != null ){
                 idPromocion = respuesta.getIdPromocion();
                 guardarSucursal();
+                
                 //Utilidades.mostrarAlertaSimple("Error de conexión", "id promocion es "+ idPromocion+"", Alert.AlertType.ERROR);
                 
                 
@@ -346,4 +362,64 @@ public class FXMLRegistrarPromocionController implements Initializable {
         }
         
     }
+
+    @FXML
+    private void fnSeleccionar(ActionEvent event) throws FileNotFoundException, IOException {
+        FileChooser fileChoose = new FileChooser();
+        File file = fileChoose.showOpenDialog(new Stage());
+        if (file!=null){
+            try{
+                
+            
+            String imageName = file.getName();
+            String[] imageNameArr = imageName.split("\\.");
+            
+            this.imageType = imageNameArr[imageNameArr.length-1].toLowerCase();
+            if (!this.imageType.equals("png") && !this.imageType.equals("jpg")){
+                Utilidades.mostrarAlertaSimple("Error", "Solo archivos jpg y png", Alert.AlertType.NONE);
+                return;
+            }
+            
+            if(file.length()>1000000){
+                Utilidades.mostrarAlertaSimple("Error", "Imagen muy pesada", Alert.AlertType.NONE);
+                return;
+            }
+            
+            BufferedImage bImage = ImageIO.read(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(bImage, imageType, bos);
+            this.byteImage = bos.toByteArray();
+         }catch(Exception e){
+             
+         }   
+        }
+    }
+    private void subirFotoBD(byte[] fotoPromocion){
+        
+        try{
+            
+            String urlServicio = Constantes.URL_BASE+"promociones/subirFoto/"+idPromocion;
+
+            String parametros = "idPromocion=" + idPromocion +
+                                "&foto=" + fotoPromocion;       
+            String resultadoWS = ConexionServiciosWeb.peticionServicioPOSTImagen(urlServicio, this.byteImage);
+            Gson gson = new Gson() ;
+            Respuesta respuesta = gson.fromJson(resultadoWS, Respuesta.class);
+            
+            if (!respuesta.getError()) {                
+                Utilidades.mostrarAlertaSimple("Promoción actualizada", 
+                        "Promoción actualizada correctamente "
+                        , Alert.AlertType.INFORMATION);
+                //Stage stage = (Stage) this.btnSeleccionarFoto.getScene().getWindow();
+                //stage.close();
+            }else{
+                Utilidades.mostrarAlertaSimple("Error al editar la promoción", respuesta.getMensaje(),
+                        Alert.AlertType.ERROR);
+            }
+                                    
+        }catch(Exception e){
+            Utilidades.mostrarAlertaSimple("Error de conexión", e.getMessage(), Alert.AlertType.ERROR);            
+        }
+                      
+    }  
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="420.0" prefWidth="500.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLRegistrarPromocionController">
+<AnchorPane id="AnchorPane" prefHeight="420.0" prefWidth="631.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLRegistrarPromocionController">
    <children>
       <DatePicker fx:id="dpFechaInicioPromocion" layoutX="308.0" layoutY="76.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #14242B;" />
       <TextField fx:id="tfNombrePromocion" layoutX="56.0" layoutY="76.0" promptText="Nombre" />
@@ -29,5 +29,7 @@
       <Label layoutX="56.0" layoutY="319.0" text="Estado" textFill="WHITE" />
       <Button layoutX="395.0" layoutY="379.0" mnemonicParsing="false" onAction="#fnGuardarPromocion" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Guardar" textFill="WHITE" />
       <ComboBox fx:id="cbSucursal" layoutX="308.0" layoutY="342.0" prefWidth="150.0" />
+      <ImageView fitHeight="132.0" fitWidth="170.0" layoutX="473.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnSeleccionarFoto" layoutX="513.0" layoutY="267.0" mnemonicParsing="false" onAction="#fnSeleccionar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Seleccionar foto" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -9,6 +9,11 @@ import Util.Constantes;
 import Util.Utilidades;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.text.DateFormat;
@@ -27,12 +32,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import modelo.ConexionServiciosWeb;
 import pojos.Categoria;
 import pojos.Estado;
@@ -107,6 +117,15 @@ public class FXMLEliminarModficarPromocionController implements Initializable {
     private TableColumn clidCategoria;
     @FXML
     private TableColumn clIdEstado;
+    @FXML
+    private ImageView imgFoto;
+    @FXML
+    private Button btnSeleccionarFoto;
+      String imgB;
+    private byte [] byteImage = null;
+    private String imageType = "";
+    Integer cont = 0;
+    
 
     /**
      * Initializes the controller class.
@@ -337,8 +356,13 @@ public class FXMLEliminarModficarPromocionController implements Initializable {
             Double costo = Double.parseDouble(tfCosto.getText());
             String fechaInicioPromocion = dpFechaInicioPromocion.getValue().toString();
             String fechaFinPromocion = dpFechaFinPromocion.getValue().toString();
-             guardarPromocion(nombre, descripcion, porcentajeDescuento, costo, fechaInicioPromocion, fechaFinPromocion);
-
+            guardarPromocion(nombre, descripcion, porcentajeDescuento, costo, fechaInicioPromocion, fechaFinPromocion);
+            if(cont != 0){
+                subirFotoBD(this.byteImage);
+                
+            } 
+                 
+             
             
             
         }
@@ -525,5 +549,67 @@ public class FXMLEliminarModficarPromocionController implements Initializable {
             
         }
     }
+
+    @FXML
+    private void fnSeleccionarFoto(ActionEvent event)throws FileNotFoundException, IOException {
+        cont = cont +1;
+        FileChooser fileChoose = new FileChooser();
+        File file = fileChoose.showOpenDialog(new Stage());
+        if (file!=null){
+            try{
+                
+            
+            String imageName = file.getName();
+            String[] imageNameArr = imageName.split("\\.");
+            
+            this.imageType = imageNameArr[imageNameArr.length-1].toLowerCase();
+            if (!this.imageType.equals("png") && !this.imageType.equals("jpg")){
+                Utilidades.mostrarAlertaSimple("Error", "Solo archivos jpg y png", Alert.AlertType.NONE);
+                return;
+            }
+            
+            if(file.length()>1000000){
+                Utilidades.mostrarAlertaSimple("Error", "Imagen muy pesada", Alert.AlertType.NONE);
+                return;
+            }
+            
+            BufferedImage bImage = ImageIO.read(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(bImage, imageType, bos);
+            this.byteImage = bos.toByteArray();
+         }catch(Exception e){
+             
+         }   
+        }
+    }
+    
+    private void subirFotoBD(byte[] fotoPromocion){
+        
+        try{
+            
+            String urlServicio = Constantes.URL_BASE+"promociones/subirFoto/"+idPromocion;
+
+            String parametros = "idPromocion=" + idPromocion +
+                                "&foto=" + fotoPromocion;       
+            String resultadoWS = ConexionServiciosWeb.peticionServicioPOSTImagen(urlServicio, this.byteImage);
+            Gson gson = new Gson() ;
+            Respuesta respuesta = gson.fromJson(resultadoWS, Respuesta.class);
+            
+            if (!respuesta.getError()) {                
+                Utilidades.mostrarAlertaSimple("Promoción actualizada", 
+                        "Promoción actualizada correctamente "
+                        , Alert.AlertType.INFORMATION);
+                //Stage stage = (Stage) this.btnSeleccionarFoto.getScene().getWindow();
+                //stage.close();
+            }else{
+                Utilidades.mostrarAlertaSimple("Error al editar la promoción", respuesta.getMensaje(),
+                        Alert.AlertType.ERROR);
+            }
+                                    
+        }catch(Exception e){
+            Utilidades.mostrarAlertaSimple("Error de conexión", e.getMessage(), Alert.AlertType.ERROR);            
+        }
+                      
+    }  
     
 }
