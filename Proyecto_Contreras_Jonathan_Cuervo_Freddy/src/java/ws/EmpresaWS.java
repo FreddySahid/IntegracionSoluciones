@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import pojos.Categoria;
 import pojos.Empresa;
 import pojos.Estado;
 import pojos.Respuesta;
@@ -194,6 +195,45 @@ public class EmpresaWS {
         }
         return listaEstados;
     }
+    @Path("estadoNombre")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public RespuestaLogin obteneridEstado(
+            @FormParam("estado") String estado)
+            {
+
+        Estado estadoO = new Estado();
+        estadoO.setEstado(estado);
+        
+        RespuestaLogin respuesta = new RespuestaLogin();
+        SqlSession conexionBD = new MyBatisUtil().getSession();
+        
+        if(conexionBD != null){
+            try{
+                estadoO = conexionBD.selectOne("empresas.estadoNombre", estadoO);
+                conexionBD.commit();
+                //if(resultado > 0){
+                    respuesta.setError(false);
+                    //respuesta.setMensaje("Bien venido " + paciente.getNombre());
+                    respuesta.setIdUsuario(estadoO.getIdEstado());
+                /*}else{
+                    respuesta.setError(true);
+                    respuesta.setMensaje("No se pudo encontrar el paciente, intentelo de nuevo más tarde");
+                    
+                }*/
+            }catch(Exception e){
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setError(true);
+            respuesta.setMensaje("Servicio no disponible, intentelo más tarde.");
+        }
+        
+        return respuesta;
+    }
     
     @Path("buscarByRfcRepresentante/{nombreRepresentante}")
     @GET
@@ -248,6 +288,7 @@ public class EmpresaWS {
     @Path("empresaNombre")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
+    
     public RespuestaLogin iniciarSesionUsuario(
             @FormParam("nombre") String nombre)
             {

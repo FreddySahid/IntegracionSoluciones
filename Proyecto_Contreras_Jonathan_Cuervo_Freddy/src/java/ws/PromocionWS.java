@@ -56,6 +56,25 @@ public class PromocionWS {
         return listaPromociones;
     }
     
+    @Path("obteneridpromocion")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Promocion buscaridPromocion(){
+        Promocion listaPromociones = null;
+        SqlSession conexionBD= MyBatisUtil.getSession();
+        if( conexionBD != null){
+            try{
+                listaPromociones = conexionBD.selectOne("promociones.obteneridpromocion");
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+            
+        }
+        return listaPromociones;
+    }
+    
     @Path("registrar")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -298,5 +317,8 @@ public class PromocionWS {
         }
         return promocion;
     }
+    
+    
+    
     
 }

@@ -13,7 +13,7 @@
             <Button fx:id="btnUsuario" mnemonicParsing="false" onMouseClicked="#menuUsuario" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Usuarios" textFill="WHITE" />
             <Button fx:id="btnEmpresa" mnemonicParsing="false" onMouseClicked="#menuEmpresa" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Empresas" textFill="WHITE" />
             <Button fx:id="btnSucursales" mnemonicParsing="false" onMouseClicked="#menuSucursales" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Sucursales" textFill="WHITE" />
-            <Button fx:id="btnPromociones" mnemonicParsing="false" onContextMenuRequested="#menuPromociones" prefHeight="64.0" prefWidth="104.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Promociones" textFill="WHITE" />
+            <Button mnemonicParsing="false" onMouseClicked="#verMenuPromociones" prefHeight="57.0" prefWidth="102.0" style="-fx-background-color: #0D1824; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Promociones" textFill="WHITE" />
          </children>
       </VBox>
    </left>

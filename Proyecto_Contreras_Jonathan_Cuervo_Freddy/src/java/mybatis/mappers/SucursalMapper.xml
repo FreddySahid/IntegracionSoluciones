@@ -48,4 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         latitud,longitud,sucursal.nombreEncargado,
        empresa.nombre AS empresa ,sucursal.idEmpresa FROM sucursal INNER JOIN empresa ON sucursal.idEmpresa = empresa.idEmpresa
     </select>
+    <select id="sucursalNombre" parameterType="pojos.Sucursal" resultType="pojos.Sucursal">
+         SELECT sucursal.idSucursal FROM sucursal WHERE sucursal.nombre = #{nombre}
+    </select>
 </mapper>

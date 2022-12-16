@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
         DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
         tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
-        FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado WHERE v_promociones.idEstado = 1;
+        FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado 
     </select>
     
      <select id="buscarPromocion" resultType="pojos.Promocion" parameterType="pojos.Promocion">
@@ -55,5 +55,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT idPromocion, nombrePromocion, to_base64(foto) AS 'foto', descripcion, fechaInicioPromocion, fechaFinPromocion, 
         idTipoPromocion, porcentajeDescuento, costo, idCategoria, idEstado FROM promocion 
         WHERE idPromocion = #{idPromocion};        
+    </select >
+    <select id="obteneridpromocion" resultType="pojos.Promocion">
+        SELECT idPromocion
+        FROM promocion
+        ORDER by idPromocion DESC
+        LIMIT 1
     </select>
+
 </mapper>

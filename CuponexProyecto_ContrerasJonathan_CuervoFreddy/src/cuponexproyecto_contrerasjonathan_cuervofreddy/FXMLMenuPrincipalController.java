@@ -43,8 +43,6 @@ public class FXMLMenuPrincipalController implements Initializable {
     @FXML
     private Button btnSucursales;
     @FXML
-    private Button btnPromociones;
-    @FXML
     private AnchorPane ap;
 
     /**
@@ -75,9 +73,7 @@ public class FXMLMenuPrincipalController implements Initializable {
         loadPage("FXMLMenuSucursal");
     }
 
-    @FXML
-    private void menuPromociones(ContextMenuEvent event) {
-    }
+
     
     private void loadPage(String Page){
         Parent root = null;
@@ -95,7 +91,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         bp.setCenter(root);
     }
     
-    @FXML
     public void abrirRegistro(ActionEvent event){
         try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLAgregarUsuarios.fxml"));
@@ -109,7 +104,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         }
     }
     
-    @FXML
     public void abrirModificacion(ActionEvent event){
         try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLModificarUsuario.fxml"));
@@ -124,7 +118,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         
     }
     
-    @FXML
     public void irRegistrarEmpresa(ActionEvent event){
         try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLRegistrarEmpresa.fxml"));
@@ -138,7 +131,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         }        
     }
     
-    @FXML
     public void irModificarEliminarEmpresa(ActionEvent event){
                 try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLModificarEliminarEmpresa.fxml"));
@@ -153,7 +145,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         
     }
     
-    @FXML
     public void buscarEmpresa(ActionEvent event){
                  try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLBuscarEmpresa.fxml"));
@@ -167,7 +158,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         }         
     }
     
-    @FXML
     public void irBuscarSucursal(ActionEvent event){
                 try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLBuscarSucursal.fxml"));
@@ -182,7 +172,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         
     }
     
-    @FXML
     public void irEliminarModificarSucursal(ActionEvent event){
         try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLModificarEliminarSucursal.fxml"));
@@ -197,7 +186,6 @@ public class FXMLMenuPrincipalController implements Initializable {
         
     }
     
-    @FXML
     public void irRegistrarCucursal(ActionEvent event){
                          try{
             Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLRegistrarSucursal.fxml"));
@@ -211,5 +199,41 @@ public class FXMLMenuPrincipalController implements Initializable {
         }
         
     }
+    public void irRegistrarPromocion(ActionEvent event){
+        try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLRegistrarPromocion.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }
+        
+    }
+    public void irModificarPromocion(ActionEvent event){
+        try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLEliminarModficarPromocion.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }
+        
+    }
+    public void irBuscarPromocion(ActionEvent event){
+        
+    }
+
+    @FXML
+    private void verMenuPromociones(MouseEvent event) {
+        loadPage("FXMLMenuPromociones");
+    }
+
+
 
 }

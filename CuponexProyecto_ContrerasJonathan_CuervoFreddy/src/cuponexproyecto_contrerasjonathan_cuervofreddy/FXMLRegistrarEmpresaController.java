@@ -57,6 +57,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
     private TextField tfRFC;
     @FXML
     private ComboBox<Estado> cvEstado;
+    Integer idEstado;
 
     ObservableList<Estado> listaEstado = FXCollections.observableArrayList();
     /**
@@ -92,7 +93,7 @@ public class FXMLRegistrarEmpresaController implements Initializable {
                 !tfDireccion.getText().isEmpty() && !tfDireccionNumero.getText().isEmpty() && 
                 !tfCp.getText().isEmpty() && !tfCiudad.getText().isEmpty() && !tfTelefono.getText().isEmpty()
                 && !tfSitioWeb.getText().isEmpty() && !tfRFC.getText().isEmpty() && 
-                !cvEstado.getValue().toString().isEmpty() ){
+                !cvEstado.getSelectionModel().isEmpty() ){
             String nombre = tfNombre.getText();
             String nombreComercial = tfNombreComercial.getText();
             String nombreRepresentante = tfNombreRepresentante.getText();
@@ -105,19 +106,15 @@ public class FXMLRegistrarEmpresaController implements Initializable {
             String sitioWeb = tfSitioWeb.getText();
             String rfc = tfRFC.getText();
             String estado = cvEstado.getValue().toString();
-            Integer idEstado;
-            if(estado == "Inactivo"){
-                idEstado = 2;
-            }else{
-                idEstado = 1;
-                System.out.println(idEstado);
-            }
+            obtenerIdEstado();
+           
+            
             if(!nombre.isEmpty() && !nombreComercial.isEmpty() && !nombreRepresentante.isEmpty() 
                     && !correoEmpresa.isEmpty() && !direccionCalle.isEmpty() && direccionNumero != null && cp != null 
                     && !ciudad.isEmpty() && !telefono.isEmpty() && !sitioWeb.isEmpty() && !rfc.isEmpty() && 
                     idEstado != null){
                 GuardarEmpresa(nombre, nombreComercial, nombreRepresentante, correoEmpresa, 
-                        direccionCalle, direccionNumero, cp, ciudad, telefono, sitioWeb, rfc, idEstado);
+                        direccionCalle, direccionNumero, cp, ciudad, telefono, sitioWeb, rfc);
             }else{
                 Utilidades.mostrarAlertaSimple("Datos incompletos", "Datos incompletos", Alert.AlertType.ERROR);
             }
@@ -128,9 +125,36 @@ public class FXMLRegistrarEmpresaController implements Initializable {
         }
     }
     
+    public void obtenerIdEstado(){
+        String estado = cvEstado.getValue().toString();
+        
+                try{
+            String url = Constantes.URL_BASE+"empresas/estadoNombre";
+            String parametros = "estado="+estado;
+                    
+            String resultado = ConexionServiciosWeb.consumirServicioPOST(url, parametros);
+            Gson gson = new Gson();
+            Respuesta respuesta = gson.fromJson(resultado, Respuesta.class);
+            
+            if(!respuesta.getError()){
+                idEstado = respuesta.getIdUsuario(); 
+                
+
+                
+            }else{
+                Utilidades.mostrarAlertaSimple("Usuario verificado", "Usuario o contraseña incorrectos", Alert.AlertType.ERROR);
+            }
+            
+        }catch(Exception e){
+            Utilidades.mostrarAlertaSimple("Error de conexión",  e.getMessage(), Alert.AlertType.ERROR);
+            
+        }
+        
+    }
+    
     public void GuardarEmpresa(String nombre,String nombreComercial, String nombreRepresentante,
          String correoEmpresa,  String direccionCalle, Integer direccionNumero, Integer cp,String ciudad, 
-         String telefono, String sitioWeb,String rfc, Integer idEstado  ){
+         String telefono, String sitioWeb,String rfc ){
         
         try{
             String url = Constantes.URL_BASE+"empresas/registrar";

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="categorias">
+    <select id="all" resultType="pojos.Categoria">
+         SELECT * FROM categoria
+    </select>
+    <select id="categoriaNombre" parameterType="pojos.Categoria" resultType="pojos.Categoria">
+         SELECT idCategoria FROM categoria WHERE categoria.categoria = #{categoria}
+    </select>
+</mapper>

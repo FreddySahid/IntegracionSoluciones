@@ -21,7 +21,9 @@ import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojos.Empresa;
 import pojos.Respuesta;
+import pojos.RespuestaLogin;
 import pojos.Sucursal;
+import pojos.TipoPromocion;
 
 /**
  *
@@ -238,6 +240,46 @@ public class SucursalWS {
             
         }
         return listaEmpresa;
+    }
+    
+    @Path("sucursalNombre")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public RespuestaLogin iniciarSesionUsuario(
+            @FormParam("nombre") String nombre)
+            {
+
+        Sucursal sucursal = new Sucursal();
+        sucursal.setNombre(nombre);
+        
+        RespuestaLogin respuesta = new RespuestaLogin();
+        SqlSession conexionBD = new MyBatisUtil().getSession();
+        
+        if(conexionBD != null){
+            try{
+                sucursal = conexionBD.selectOne("sucursales.sucursalNombre", sucursal);
+                conexionBD.commit();
+                //if(resultado > 0){
+                    respuesta.setError(false);
+                    //respuesta.setMensaje("Bien venido " + paciente.getNombre());
+                    respuesta.setIdUsuario(sucursal.getIdSucursal());
+                /*}else{
+                    respuesta.setError(true);
+                    respuesta.setMensaje("No se pudo encontrar el paciente, intentelo de nuevo más tarde");
+                    
+                }*/
+            }catch(Exception e){
+                respuesta.setError(true);
+                respuesta.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setError(true);
+            respuesta.setMensaje("Servicio no disponible, intentelo más tarde.");
+        }
+        
+        return respuesta;
     }
     
 }

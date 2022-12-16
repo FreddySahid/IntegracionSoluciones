@@ -48,5 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT idEmpresa FROM empresa WHERE nombre = #{nombre}
     </select>
     
+    <select id="estadoNombre" parameterType="pojos.Estado" resultType="pojos.Estado">
+         SELECT estado.idEstado FROM estado WHERE estado.estado = #{estado}
+    </select>
+    
     
 </mapper>
