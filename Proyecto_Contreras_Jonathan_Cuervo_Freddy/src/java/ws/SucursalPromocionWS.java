@@ -7,6 +7,7 @@ package ws;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -69,6 +70,43 @@ public class SucursalPromocionWS {
         }
         return respuestaWS;
     }
+    
+    @Path("eliminar")
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    public Respuesta eliminar(@FormParam("idPromocion") Integer idPromocion, 
+            @FormParam("idSucursal") Integer idSucursal){
+        
+        Respuesta respuestaWS = new Respuesta();
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        SucursalPromocion sucursalPromocion = new SucursalPromocion();
+        sucursalPromocion.setIdPromocion(idPromocion);
+        sucursalPromocion.setIdSucursal(idSucursal);
+        if(conexionBD != null){
+            try{
+                int respuesta = conexionBD.delete("sucursalPromocion.eliminar", sucursalPromocion);
+                conexionBD.commit();
+                if(respuesta>0){
+                    respuestaWS.setError(false);
+                    respuestaWS.setMensaje("Registro de la promocion eliminado");
+                }else{
+                    respuestaWS.setError(false);
+                    respuestaWS.setMensaje("No se pudó eliminar el registro solicitado");
+                }
+            }catch(Exception e){
+                respuestaWS.setError(true);
+                respuestaWS.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
+            }
+        }else{
+            respuestaWS.setError(true);
+            respuestaWS.setMensaje("No hay conexión");
+        }
+        return respuestaWS;
+    }
+    
+    
     
     
     

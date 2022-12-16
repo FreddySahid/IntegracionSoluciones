@@ -226,6 +226,16 @@ public class FXMLMenuPrincipalController implements Initializable {
         
     }
     public void irBuscarPromocion(ActionEvent event){
+        try{
+            Parent vistaMedicos = FXMLLoader.load(getClass().getResource("FXMLBuscarPromocion.fxml"));
+            Scene sceaAdmin = new Scene(vistaMedicos);
+            Stage scenarioAdmin = new Stage();
+            scenarioAdmin.setScene(sceaAdmin);
+            scenarioAdmin.initModality(Modality.APPLICATION_MODAL);
+            scenarioAdmin.showAndWait();
+        }catch (IOException ex){
+            
+        }
         
     }
 

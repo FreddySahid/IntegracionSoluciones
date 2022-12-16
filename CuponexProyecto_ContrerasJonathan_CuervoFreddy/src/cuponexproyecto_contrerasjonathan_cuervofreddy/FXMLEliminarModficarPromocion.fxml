@@ -6,10 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLEliminarModficarPromocionController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="1200.0" style="-fx-background-color: #14242B;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLEliminarModficarPromocionController">
    <children>
-      <Button layoutX="1112.0" layoutY="336.0" mnemonicParsing="false" onAction="#fnGuardarPromocion" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Guardar" textFill="WHITE" />
+      <Button layoutX="1115.0" layoutY="404.0" mnemonicParsing="false" onAction="#fnModificarPromocion" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Modificar" textFill="WHITE" />
       <Label layoutX="846.0" layoutY="314.0" text="Estado" textFill="WHITE" />
       <ComboBox fx:id="cbEstado" layoutX="846.0" layoutY="337.0" prefWidth="150.0" promptText="Estado" />
       <ComboBox fx:id="cbCategoria" layoutX="1027.0" layoutY="272.0" prefWidth="150.0" promptText="Categoría" />
@@ -28,11 +27,27 @@
       <Label layoutX="846.0" layoutY="44.0" text="Nombre" textFill="WHITE" />
       <TextField fx:id="tfNombrePromocion" layoutX="846.0" layoutY="71.0" promptText="Nombre" />
       <DatePicker fx:id="dpFechaInicioPromocion" layoutX="1025.0" layoutY="71.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #14242B;" />
-      <TableView layoutX="23.0" layoutY="76.0" prefHeight="328.0" prefWidth="793.0">
+      <TableView fx:id="tbPromocion" layoutX="23.0" layoutY="76.0" prefHeight="328.0" prefWidth="793.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="clIdPromocion" minWidth="0.0" prefWidth="0.0" text="idPromocion" visible="false" />
+          <TableColumn fx:id="clNombrePromocion" prefWidth="96.0" text="Nombre" />
+            <TableColumn fx:id="clDescripcion" prefWidth="92.0" text="Descripción" />
+            <TableColumn fx:id="clInicio" text="Inicio" />
+            <TableColumn fx:id="clFin" prefWidth="67.0" text="Fin" />
+            <TableColumn fx:id="clTipoPromocion" text="Tipo" />
+            <TableColumn fx:id="clDescuento" prefWidth="110.0" text="Descuento" />
+            <TableColumn fx:id="clCosto" minWidth="0.0" prefWidth="96.0" text="Costo" />
+            <TableColumn fx:id="clCategoria" prefWidth="88.0" text="Categoria" />
+            <TableColumn fx:id="clEstado" minWidth="0.0" prefWidth="82.0" text="Estado" />
+            <TableColumn fx:id="clIdTipoPromocion" minWidth="0.0" prefWidth="0.0" text="idTipoPromocion" visible="false" />
+            <TableColumn fx:id="clidCategoria" minWidth="2.0" prefWidth="3.0" text="idCategoria" visible="false" />
+            <TableColumn fx:id="clIdEstado" prefWidth="39.0" text="idEstado" visible="false" />
         </columns>
       </TableView>
+      <Button layoutX="1045.0" layoutY="404.0" mnemonicParsing="false" onAction="#fnEliminarPromocion" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Eliminar" textFill="WHITE" />
+      <Button layoutX="882.0" layoutY="404.0" mnemonicParsing="false" onAction="#fnSeleccionarPromocion" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Seleccionar" textFill="WHITE" />
+      <ComboBox fx:id="cbSucursal" layoutX="1027.0" layoutY="337.0" prefWidth="150.0" promptText="Sucursal" />
+      <Label layoutX="1027.0" layoutY="314.0" text="Sucursal" textFill="WHITE" />
+      <Button layoutX="968.0" layoutY="404.0" mnemonicParsing="false" onAction="#fnDesactivar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Desactivar" textFill="WHITE" />
    </children>
 </AnchorPane>

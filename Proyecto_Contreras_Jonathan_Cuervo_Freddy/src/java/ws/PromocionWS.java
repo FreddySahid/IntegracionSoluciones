@@ -22,6 +22,7 @@ import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import pojos.Promocion;
 import pojos.Respuesta;
+import pojos.RespuestaLogin;
 import pojos.Sucursal;
 
 /**
@@ -241,19 +242,65 @@ public class PromocionWS {
         return respuestaWS;
     }
     
-    @Path("buscarPromocion/{nombrePromocion}")
-    @GET
+
+    
+    @Path("buscarnombrepromo")
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Promocion obtenerTodosDatos( 
-            @PathParam("nombrePromocion") String nombrePromocion){
+    public Promocion obtenerDatos( 
+            @FormParam("nombrePromocion") String nombrePromocion){
+        
         Promocion promocion = new Promocion();
         promocion.setNombrePromocion(nombrePromocion);
-       
+        
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if(conexionBD != null){
+            try {
+                promocion = conexionBD.selectOne("promociones.buscarPromo", promocion);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }
+        return promocion;
+    }
+    
+    @Path("buscarnombrepromoFecha")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Promocion obtenerDatosFecha( 
+            @FormParam("fechaInicioPromocion") String fechaInicioPromocion){
+        
+        Promocion promocion = new Promocion();
+        promocion.setFechaInicioPromocion(fechaInicioPromocion);
         
         SqlSession conexionBD = MyBatisUtil.getSession();
         if(conexionBD != null){
             try {
                 promocion = conexionBD.selectOne("promociones.buscarPromocion", promocion);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }
+        return promocion;
+    }
+    
+    @Path("buscarnombrepromoFechaFin")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Promocion obtenerDatosFechaFin( 
+            @FormParam("fechaFinPromocion") String fechaFinPromocion){
+        
+        Promocion promocion = new Promocion();
+        promocion.setFechaFinPromocion(fechaFinPromocion);
+        
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if(conexionBD != null){
+            try {
+                promocion = conexionBD.selectOne("promociones.buscarPromocionFin", promocion);
             } catch (Exception e) {
                 e.printStackTrace();
             }finally{

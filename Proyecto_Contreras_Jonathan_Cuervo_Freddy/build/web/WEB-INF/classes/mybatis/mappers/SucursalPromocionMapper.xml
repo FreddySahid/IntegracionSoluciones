@@ -9,5 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         INSERT INTO sucursalpromocion (idPromocion, idSucursal) VALUES (#{idPromocion}, #{idSucursal})
 
     </insert>
+    <delete id = "eliminar" parameterType="pojos.SucursalPromocion">
+        DELETE FROM sucursalpromocion WHERE idPromocion = #{idPromocion} AND idSucursal=#{idSucursal};
+    </delete>
     
 </mapper>

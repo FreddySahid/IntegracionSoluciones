@@ -156,6 +156,11 @@ public class Promocion {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Promocion: " + nombrePromocion +", " + descripcion + "\nFecha de inicio de la promocion=" + fechaInicioPromocion + ", Fecha final de la promocion=" + fechaFinPromocion + "\nTipo de promocion " + tipoPromocion + ", Porcentaje de descuento " + porcentajeDescuento + ", costo $" + costo + "\nCategoria " + categoria + ", estado " + estado;
+    }
     
     
 }

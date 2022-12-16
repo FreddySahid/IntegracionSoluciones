@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="promociones">
     <select id="all" resultType="pojos.Promocion">
-        SELECT nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
+        SELECT idPromocion, nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
         DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
         tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
         FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado 
@@ -17,8 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
         tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
         FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado
-        WHERE v_promociones.nombrePromocion = #{nombrePromocion} OR v_promociones.fechaInicioPromocion = #{nombrePromocion}
-        OR v_promociones.fechaFinPromocion = #{nombrePromocion};
+        WHERE  v_promociones.fechaInicioPromocion = #{fechaInicioPromocion}
+        
+    </select>
+    <select id="buscarPromocionFin" resultType="pojos.Promocion" parameterType="pojos.Promocion">
+        SELECT nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
+        DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
+        tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
+        FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado
+        WHERE  v_promociones.fechaFinPromocion = #{fechaFinPromocion}
+        
     </select>
     <insert id="registrar" parameterType="pojos.Promocion">
         INSERT INTO promocion(nombrePromocion, descripcion, fechaInicioPromocion, fechaFinPromocion,
@@ -61,6 +69,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM promocion
         ORDER by idPromocion DESC
         LIMIT 1
+    </select>
+    
+    <select id="buscarPromo" resultType="pojos.Promocion" parameterType="pojos.Promocion">
+        SELECT nombrePromocion, descripcion,DATE_FORMAT(fechaInicioPromocion, "%d-%m-%Y") AS fechaInicioPromocion,
+        DATE_FORMAT(fechaFinPromocion, "%d-%m-%Y") AS fechaFinPromocion, idTipoPromocion,
+        tipoPromocion,porcentajeDescuento, costo, idCategoria, categoria, v_promociones.idEstado, estado.estado
+        FROM v_promociones INNER JOIN estado ON v_promociones.idEstado = estado.idEstado
+        WHERE v_promociones.nombrePromocion = #{nombrePromocion} 
     </select>
 
 </mapper>

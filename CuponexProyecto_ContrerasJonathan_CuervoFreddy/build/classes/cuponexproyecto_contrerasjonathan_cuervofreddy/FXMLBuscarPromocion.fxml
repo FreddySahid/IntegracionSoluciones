@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #14242B;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cuponexproyecto_contrerasjonathan_cuervofreddy.FXMLBuscarPromocionController">
+   <children>
+      <Button layoutX="490.0" layoutY="353.0" mnemonicParsing="false" onAction="#fnBuscar" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar Nombre" textFill="WHITE" />
+      <Button layoutX="234.0" layoutY="70.0" mnemonicParsing="false" onAction="#fnAgregarfecha" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar fecha inicio" textFill="WHITE" />
+      <TextField fx:id="tfBuscar" layoutX="36.0" layoutY="146.0" prefHeight="25.0" prefWidth="529.0" />
+      <Label layoutX="61.0" layoutY="22.0" text="Puedes buscar una promocion por nombre o fecha" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dpFecha" layoutX="38.0" layoutY="71.0" />
+      <Label fx:id="lbPromocion" layoutX="79.0" layoutY="212.0" prefHeight="130.0" prefWidth="479.0" textFill="#fcf6f6" />
+      <DatePicker fx:id="dpFechafinal" layoutX="36.0" layoutY="106.0" />
+      <Button layoutX="232.0" layoutY="105.0" mnemonicParsing="false" onAction="#fnFechaFinal" style="-fx-background-color: #0D1824; -fx-border-color: white;" text="Buscar fecha final" textFill="WHITE" />
+   </children>
+</AnchorPane>
