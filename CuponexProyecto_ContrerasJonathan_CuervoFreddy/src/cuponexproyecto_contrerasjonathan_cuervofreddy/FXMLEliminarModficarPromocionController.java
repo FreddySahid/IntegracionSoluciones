@@ -538,10 +538,10 @@ public class FXMLEliminarModficarPromocionController implements Initializable {
             Respuesta respuesta = gson.fromJson(resultado, Respuesta.class);
             
             if(!respuesta.getError()){
-                Utilidades.mostrarAlertaSimple("Empresa Eliminada", "Promocion Eliminada "+
+                Utilidades.mostrarAlertaSimple("Promoción desactivada", "Promocion desactivada "+
                         " al sistema", Alert.AlertType.INFORMATION);                
             }else{
-                Utilidades.mostrarAlertaSimple("Error al eliminar", "Esta empresa aún tiene sucursales", Alert.AlertType.ERROR);
+                Utilidades.mostrarAlertaSimple("Error al eliminar", "Error al desactivar promoción", Alert.AlertType.ERROR);
             }
             
         }catch(Exception e){

@@ -171,7 +171,7 @@ public class FXMLModificarUsuarioController implements Initializable {
             Respuesta respuesta = gson.fromJson(resultado, Respuesta.class);
             
             if(!respuesta.getError()){
-                Utilidades.mostrarAlertaSimple("Usuario Modificado", "Usuario Modificado "+
+                Utilidades.mostrarAlertaSimple("Usuario Modificado", "Usuario Eliminado "+
                         " al sistema", Alert.AlertType.INFORMATION);                
             }else{
                 Utilidades.mostrarAlertaSimple("Usuario Modifiacdo", "Error en el correo", Alert.AlertType.ERROR);

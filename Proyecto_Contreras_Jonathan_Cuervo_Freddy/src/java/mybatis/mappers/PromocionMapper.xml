@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE v_promociones.nombrePromocion = #{nombrePromocion} 
     </select>
     
-    <select id="buscarPromocionCategoria" resultType="pojos.Promocion" parameterType="pojos.Promocion">
+    <select id="buscarPromocionCategoria" resultType="pojos.Promocion" parameterType="int">
         SELECT v_promociones.idCategoria, v_promociones.idPromocion, v_promocionesmovil.nombre, v_promociones.nombrePromocion, v_promociones.fechaInicioPromocion,
          v_promociones.fechaFinPromocion, v_promociones.tipoPromocion FROM v_promociones INNER JOIN v_promocionesmovil 
          ON v_promociones.idPromocion = v_promocionesmovil.idPromocion WHERE 

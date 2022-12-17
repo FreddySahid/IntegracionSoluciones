@@ -365,6 +365,31 @@ public class PromocionWS {
         return promocion;
     }
     
+ 
+
+    
+    @Path("obtenerdatosPromocionporcategoria/{idCategoria}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Promocion> buscarTodos(@PathParam("idCategoria") 
+            Integer idCategoria){
+        List<Promocion> listaPromociones = null;
+        SqlSession conexionBD= MyBatisUtil.getSession();
+        if( conexionBD != null){
+            try{
+                listaPromociones = conexionBD.selectList("promociones.buscarPromocionCategoria", idCategoria);
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+            
+        }
+        return listaPromociones;
+    }
+    
+    
+    
     
     
     

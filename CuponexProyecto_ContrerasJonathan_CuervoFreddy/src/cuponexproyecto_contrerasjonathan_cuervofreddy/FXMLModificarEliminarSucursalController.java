@@ -255,7 +255,7 @@ public class FXMLModificarEliminarSucursalController implements Initializable {
             Respuesta respuesta = gson.fromJson(resultado, Respuesta.class);
             
             if(!respuesta.getError()){
-                Utilidades.mostrarAlertaSimple("Empresa Eliminada", "Empresa Eliminada "+
+                Utilidades.mostrarAlertaSimple("Sucursal Eliminada", "Sucursal Eliminada "+
                         " al sistema", Alert.AlertType.INFORMATION);                
             }else{
                 Utilidades.mostrarAlertaSimple("Error al eliminar", "Esta empresa aún tiene sucursales", Alert.AlertType.ERROR);

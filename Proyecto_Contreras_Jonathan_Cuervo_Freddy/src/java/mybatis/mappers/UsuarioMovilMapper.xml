@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="usuariosmovil">
+    <select id="buscarUsuario" resultType="pojos.UsuarioMovil" parameterType="pojos.UsuarioMovil">
+        SELECT * FROM usuariomovil WHERE correo=#{correo} AND password=#{password};
+    </select>
+    <insert id="registrarUserMovil" parameterType="pojos.UsuarioMovil">
+        INSERT INTO usuariomovil (nombre, apellidoPaterno, apellidoMaterno, telefono, correo, direccionCalle, direccionNumero, fechaNacimiento, password)
+        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{telefono}, #{correo}, #{direccionCalle}, #{direccionNumero}, #{fechaNacimiento}, #{password})
+    </insert>
+    <update id="actualizarDatos" parameterType="pojos.UsuarioMovil">
+        UPDATE usuariomovil
+        SET nombre = #{nombre},
+        apellidoPaterno = #{apellidoPaterno},
+        apellidoMaterno = #{apellidoMaterno},
+        telefono = #{telefono},
+        direccionCalle = #{direccionCalle},
+        direccionNumero = #{direccionNumero},
+        fechaNacimiento = #{fechaNacimiento},
+        password = #{password}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+    <select id="obtenerDatos" resultType="pojos.UsuarioMovil" parameterType="int">
+        SELECT * FROM usuariomovil WHERE idUsuario=#{idUsuario}
+    </select>
+    
+</mapper>
