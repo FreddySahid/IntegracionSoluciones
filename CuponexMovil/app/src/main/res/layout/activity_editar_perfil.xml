@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditarPerfil">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#B59784"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="25dp"
+            android:text="Cuponex" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:layout_marginBottom="10dp"
+            android:paddingHorizontal="10dp"
+            android:textAlignment="center"
+            android:text="Actualizar información" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:text="Nombre:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditNombre"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apellido paterno:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditApellidoP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="163dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apellido materno:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditApellidoM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Teléfono:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="167dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Calle:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditCalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="167dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Número:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditNumero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fecha de nacimiento:"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Contraseña"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/etEditPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="17dp"
+                android:paddingHorizontal="15dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnUpdateData"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#0F54A8"
+            android:text="Actualizar información"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
